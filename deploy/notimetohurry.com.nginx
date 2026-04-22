@@ -1,0 +1,37 @@
+# Production file lives at: /etc/nginx/sites-available/notimetohurry.com
+# TLS blocks are managed by Certbot. After first HTTP-only deploy:
+#   certbot --nginx -d notimetohurry.com
+
+server {
+    server_name notimetohurry.com;
+
+    root /var/www/notimetohurry.com;
+    index index.html;
+
+    location /.well-known/acme-challenge/ {
+        root /var/www/letsencrypt;
+    }
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    access_log /var/log/nginx/notimetohurry.com.access.log;
+    error_log /var/log/nginx/notimetohurry.com.error.log;
+
+    listen 443 ssl;
+    ssl_certificate /etc/letsencrypt/live/notimetohurry.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/notimetohurry.com/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+}
+
+server {
+    if ($host = notimetohurry.com) {
+        return 301 https://$host$request_uri;
+    }
+
+    listen 80;
+    server_name notimetohurry.com;
+    return 404;
+}
