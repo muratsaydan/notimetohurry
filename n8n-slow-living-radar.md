@@ -2,6 +2,8 @@
 
 Bu belge, **önce piyasayı ve dilini tanımak** için haftalık / günlük bir tarama hattı kurmanızı ve çıktıyı **tek e-postada özet listelemeyi** hedefler. Repoda e-posta adresi ve gizli anahtar tutulmaz; bunlar yalnızca n8n içinde tanımlanır.
 
+**Kurulu n8n workflow:** [Slow Living Radar](https://n8n.saydan.net/workflow/NpuUHH9TzEKZS2hu) — manuel tetikleyici ile üç RSS kaynağından öğe toplar, linke göre tekilleştirir, son düğümde HTML özet üretir. n8n arayüzünden **Test workflow** ile çalıştırıp çıktıda `html` alanını kontrol edin. (E-posta düğümü henüz yok; SMTP credential eklendikten sonra aynı akışa bağlanabilir.)
+
 ---
 
 ## 1. “Dünyadaki ve Türkiye’deki tüm haberler” — gerçekçi çerçeve

@@ -1,0 +1,70 @@
+{
+  "name": "Slow Living Radar",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "11111111-1111-1111-1111-111111111111",
+      "name": "When clicking 'Test workflow'",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [-380, 0]
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  { json: { feed: 'Zen Habits', url: 'https://feeds.feedburner.com/zenhabits' } },\n  { json: { feed: 'Slow Living Collective', url: 'https://theslowlivingcollective.substack.com/feed' } },\n  { json: { feed: 'Google News (EN)', url: 'https://news.google.com/rss/search?q=slow+living&hl=en&gl=US&ceid=US:en' } }\n];"
+      },
+      "id": "22222222-2222-2222-2222-222222222222",
+      "name": "Feed URLs",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-140, 0]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "options": {}
+      },
+      "id": "33333333-3333-3333-3333-333333333333",
+      "name": "RSS Read",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [120, 0]
+    },
+    {
+      "parameters": {
+        "jsCode": "function guessFeed(link) {\n  const u = String(link);\n  if (u.includes('feedburner') || u.includes('zenhabits')) return 'Zen Habits';\n  if (u.includes('substack.com')) return 'Slow Living Collective';\n  if (u.includes('news.google.com')) return 'Google News (EN)';\n  return 'Diğer';\n}\nconst seen = new Set();\nconst out = [];\nfor (const item of $input.all()) {\n  const j = item.json;\n  const link = (j.link || j.guid || '').toString();\n  if (!link || seen.has(link)) continue;\n  seen.add(link);\n  out.push({\n    json: {\n      feed: guessFeed(link),\n      title: j.title || '(başlıksız)',\n      link,\n      pubDate: j.pubDate || j.isoDate || '',\n    },\n  });\n}\nreturn out;"
+      },
+      "id": "44444444-4444-4444-4444-444444444444",
+      "name": "Dedupe by link",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [380, 0]
+    },
+    {
+      "parameters": {
+        "jsCode": "const rows = $input.all().map((i, idx) => {\n  const r = i.json;\n  const title = String(r.title || '').replace(/</g, '&lt;').replace(/&/g, '&amp;');\n  const feed = String(r.feed || '').replace(/</g, '&lt;');\n  const link = String(r.link || '').replace(/\"/g, '%22');\n  return `<tr><td>${idx + 1}</td><td>${feed}</td><td>${title}</td><td><a href=\\\"${link}\\\">link</a></td><td>${r.pubDate || ''}</td></tr>`;\n}).join('\\n');\nconst html = `<!DOCTYPE html><html><head><meta charset=\\\"utf-8\\\"></head><body><h1>Slow living — özet</h1><table border=\\\"1\\\" cellpadding=\\\"6\\\"><tr><th>#</th><th>Kaynak</th><th>Başlık</th><th>Link</th><th>Tarih</th></tr>${rows}</table></body></html>`;\nreturn [{ json: { html, itemCount: $input.all().length } }];"
+      },
+      "id": "55555555-5555-5555-5555-555555555555",
+      "name": "Build HTML",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [640, 0]
+    }
+  ],
+  "connections": {
+    "When clicking 'Test workflow'": {
+      "main": [[{ "node": "Feed URLs", "type": "main", "index": 0 }]]
+    },
+    "Feed URLs": {
+      "main": [[{ "node": "RSS Read", "type": "main", "index": 0 }]]
+    },
+    "RSS Read": {
+      "main": [[{ "node": "Dedupe by link", "type": "main", "index": 0 }]]
+    },
+    "Dedupe by link": {
+      "main": [[{ "node": "Build HTML", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "staticData": null
+}
