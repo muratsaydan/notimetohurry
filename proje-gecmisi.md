@@ -226,6 +226,8 @@ Neden bilge? → Ağır bir bedel ödedi, o bedel onu pişirdi.
 
 **Araştırma notu — Hailuo AI:** Çevrede “Hailuo AI” (yazım/köken netleştirilecek) ürününün yeteneklerinin güçlü olduğu söyleniyor; ekip içi bilgi henüz yüzeysel — **özellik seti, lisans, API ve Nâgihan iş akışına uygunluk ayrıca incelenecek.** *(Not: Piyasada video üretimi tarafında MiniMax **Hailuo** adıyla anılan ürünler bulunuyor; isim doğrulaması yapılacak.)*
 
+**Murat — İçerik önceliği (radar önce):** Makale gövdelerine geçmeden önce, dünyada ve Türkiye’de slow living ekosisteminin **haber, blog ve üretici yazıları** taranacak; çıktı önce **tek e-postada özet liste** olarak değerlendirilecek — ortam tanıması. n8n tarafında akış, RSS + Google Haberler RSS + (isteğe bağlı) Google Uyarıları RSS ile kurulacak; teknik sınır ve düğüm sırası **`n8n-slow-living-radar.md`** dosyasında adım adım yazılıdır.
+
 ---
 
 ## SÜREÇ ANALİZİ: NE OLDU BURADA?
@@ -262,6 +264,7 @@ Bu konuşmada bir karakter sadece tasarlanmadı. Adım adım doğdu.
 | Leonardo + ElevenLabs | Yüz ve ses dijital varlığın sabit üretim kanalı |
 | n8n + API/MCP (hedef) | Tekrarlanabilir üretim hattı; insan onayı korunacak şekilde tasarlanacak |
 | Hailuo AI | İncelenecek; henüz seçim veya entegrasyon kararı yok |
+| Önce “radar” e-postası | Makale üretiminden önce ekosistemin taranıp kutuda özetlenmesi |
 
 ---
 
