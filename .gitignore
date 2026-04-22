@@ -2,7 +2,3 @@ Thumbs.db
 .DS_Store
 *.tmp
 ~$*
-
-# Yerel sırlar — repoya asla gitmesin; şablon: secrets/example.env
-secrets/*
-!secrets/example.env

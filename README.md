@@ -49,3 +49,14 @@ Görseller eklendikten sonra `index.html` içindeki yorum satırlarını (`<!-- 
 ## Teknoloji
 
 Saf HTML/CSS/JS — framework yok, dependency yok. Herhangi bir web sunucusuna doğrudan yüklenebilir.
+
+## Ortak yerel entegrasyon dosyası (repo dışı)
+
+n8n API anahtarı gibi **tüm repolar için geçerli** sırları repoya koymayın. Bunun yerine kullanıcı profilinde sabit bir dosya kullanın; Cursor / assistant **hangi workspace açık olursa olsun** bu yolu okuyabilir:
+
+| | |
+|---|---|
+| **Dosya** | `%USERPROFILE%\.cursor\no-time-to-hurry.env` |
+| **Şablon** | `%USERPROFILE%\.cursor\no-time-to-hurry.env.example` (örnek anahtar isimleri; repoya girmez) |
+
+`no-time-to-hurry.env` dosyasını `.gitignore`’a eklemenize gerek yok — zaten repo dışında.
