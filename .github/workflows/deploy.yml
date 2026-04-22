@@ -37,6 +37,7 @@ jobs:
           ssh-keyscan -H "${{ secrets.DEPLOY_HOST }}" >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
 
+      # Use ./css not ./css/: trailing slash copies directory *contents* into dest root and breaks ../css paths in HTML.
       - name: Rsync site files
         env:
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
@@ -45,7 +46,7 @@ jobs:
           set -e
           DEST="${DEPLOY_USER}@${DEPLOY_HOST}:/var/www/notimetohurry.com/"
           rsync -avz --delete \
-            ./css/ ./en/ ./tr/ ./assets/ \
+            ./css ./en ./tr ./assets \
             ./index.html ./choose-language.html \
             "$DEST"
 
