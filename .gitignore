@@ -2,3 +2,6 @@ Thumbs.db
 .DS_Store
 *.tmp
 ~$*
+
+# Kök .env yalnızca secrets.env'den türetilir; repoya girmez
+.env

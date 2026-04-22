@@ -50,13 +50,13 @@ Görseller eklendikten sonra `index.html` içindeki yorum satırlarını (`<!-- 
 
 Saf HTML/CSS/JS — framework yok, dependency yok. Herhangi bir web sunucusuna doğrudan yüklenebilir.
 
-## Ortak yerel entegrasyon dosyası (repo dışı)
+## Ortak yerel sırlar (repo dışı — tüm projeler)
 
-n8n API anahtarı gibi **tüm repolar için geçerli** sırları repoya koymayın. Bunun yerine kullanıcı profilinde sabit bir dosya kullanın; Cursor / assistant **hangi workspace açık olursa olsun** bu yolu okuyabilir:
+API anahtarları, şifreler vb. **tek dosyada** tutulur; repoya yazılmaz. Cursor kuralı: agent göreve başlarken bu dosyayı okur, aynı bilgiler için tekrar tekrar sormaz.
 
 | | |
 |---|---|
-| **Dosya** | `%USERPROFILE%\.cursor\no-time-to-hurry.env` |
-| **Şablon** | `%USERPROFILE%\.cursor\no-time-to-hurry.env.example` (örnek anahtar isimleri; repoya girmez) |
+| **Gerçek dosya** | `%USERPROFILE%\.cursor\secrets.env` |
+| **Şablon** | `%USERPROFILE%\.cursor\secrets.env.example` → kopyalayıp `secrets.env` yapın |
 
-`no-time-to-hurry.env` dosyasını `.gitignore`’a eklemenize gerek yok — zaten repo dışında.
+Bu repoda araçlar için gerekiyorsa kökte **`.env`** üretilebilir (içerik `secrets.env`’den türetilir); `.env` git’e girmez. Anahtar isimleri için repoda **`.env.example`** (değersiz) bakın.
