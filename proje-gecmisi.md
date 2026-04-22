@@ -207,6 +207,27 @@ Neden bilge? → Ağır bir bedel ödedi, o bedel onu pişirdi.
 
 ---
 
+## BÖLÜM 13 — DİJİTAL VARLIK, ÇOKLU FORMAT VE ÜRETİM HATTI
+
+*Bu bölüm, projenin canlı site ve dağıtım aşamasından sonra konuşulan üretim stratejisi ve araç zincirini kayıt altına alır (Nisan 2026, devam eden kararlar).*
+
+**Murat — Görsel ve ses (mevcut durum):** Nâgihan'ın yüzü **Leonardo.ai** ile üretildi; görsel dosyaları şu an sitede **`assets/`** klasöründe kullanılıyor. Sesi **ElevenLabs** üzerinde, hesabımdaki **“Seslerim”** bölümünde **“Nagihan”** adıyla kayıtlı bir ses profili olarak duruyor.
+
+**Murat — İçerik dili ve sıra (hedeflenen iş akışı):** Tüm makaleleri önce **Türkçe** üretmeyi planlıyoruz; her biri için hem **yazı** hem **video** olacak. Ardından aynı içeriğin **İngilizce** versiyonunu oluşturacağız. Bu sıra, hem seslendirme hem çeviri hem de sitede `tr/` → `en/` yapısıyla uyumlu.
+
+**Murat — ElevenLabs ve otomasyon:** Bir süredir ElevenLabs ile yoğun çalışıldı; arayüz üzerinde kaliteli sonuçlar alınabildiği görüldü. Hedef: Web arayüzünde yapılabilen işlerin mümkün olduğunca **API** ve gerekirse **MCP sunucuları** ile bağlanması — böylece metin → ses → (ileride) video adımlarında **tekrarlanabilir bir hat** kurulabilir. **n8n** (mevcut sunucu) bu hatta **zamanlama, bildirim, onay adımı ve harici servis çağrıları** için doğal omurga olarak düşünülüyor.
+
+**Süreç taslağı (henüz tam kilitleşmiş karar değil; tartışma çıktısı):**
+- Haftada **en az bir** makale / içerik paketi hedefi.
+- Yapay zekâ: **konu ve taslak** üretiminde asistan; **karakter anayasası** ve örnek metinlerle bağlama; **nihai ses** için insan editi ve onay.
+- Yayın: Depo güncellemesi + mevcut **GitHub Actions** ile `notimetohurry.com` canlıya alma (detaylar iş akışı netleştikçe bu belgeye eklenecek).
+
+**Murat — Uzun vadeli iş potansiyeli:** Bu üretim ve otomasyon yaklaşımı, ileride teknik anlamda bir tür **“AI tasarım / üretim ajansı”** modeline genişleyebilecek kapasitede görülüyor; pazar tarafında da değerlendirme notu olarak kayda geçirilir.
+
+**Araştırma notu — Hailuo AI:** Çevrede “Hailuo AI” (yazım/köken netleştirilecek) ürününün yeteneklerinin güçlü olduğu söyleniyor; ekip içi bilgi henüz yüzeysel — **özellik seti, lisans, API ve Nâgihan iş akışına uygunluk ayrıca incelenecek.** *(Not: Piyasada video üretimi tarafında MiniMax **Hailuo** adıyla anılan ürünler bulunuyor; isim doğrulaması yapılacak.)*
+
+---
+
 ## SÜREÇ ANALİZİ: NE OLDU BURADA?
 
 Bu konuşmada bir karakter sadece tasarlanmadı. Adım adım doğdu.
@@ -237,12 +258,16 @@ Bu konuşmada bir karakter sadece tasarlanmadı. Adım adım doğdu.
 | Nehir'i zıt değil ayna yapmak | Herkes kendini Nehir'de görecek |
 | Misyoner değil tanık | "Söylemek" değil "göstermek" |
 | Melami meşrep karakter | Dışı ile içi farklı görünen, taşımayan |
+| Çoklu format önce TR | Her içerik yazı + video TR; sonra EN versiyonu |
+| Leonardo + ElevenLabs | Yüz ve ses dijital varlığın sabit üretim kanalı |
+| n8n + API/MCP (hedef) | Tekrarlanabilir üretim hattı; insan onayı korunacak şekilde tasarlanacak |
+| Hailuo AI | İncelenecek; henüz seçim veya entegrasyon kararı yok |
 
 ---
 
 ## SON NOT
 
-Bu belge 20 Nisan 2026 tarihinde, Nâgihan projesinin ilk gününde oluşturulmuştur.
+Bu belge 20 Nisan 2026 tarihinde, Nâgihan projesinin ilk gününde oluşturulmuştur. **Proje ilerledikçe (site, deploy, içerik stratejisi, araç zinciri) yeni bölümler ve karar tablosu satırlarıyla güncellenmeye devam eder** — bu da arşivin parçasıdır.
 
 Proje başarıya ulaşırsa bu konuşma bir şeyin nasıl doğduğunu gösterecektir. Ulaşmazsa yine de güzel bir belge olarak kalacaktır.
 
