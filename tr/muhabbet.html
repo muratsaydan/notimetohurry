@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muhabbet — hiç bir yere yetişmeyenler kulübü</title>
+  <link rel="alternate" hreflang="en" href="../en/conversations.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <nav aria-label="Ana menü">
+      <a href="index.html" class="nav-logo"><span>hiç bir yere yetişmeyenler kulübü</span></a>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="index.html">Ana sayfa</a></li>
+          <li><a href="hakkinda.html">Hakkımda</a></li>
+          <li><a href="sakin-yasam.html">Sakin yaşam</a></li>
+          <li><a href="muhabbet.html">Muhabbet</a></li>
+          <li><a href="makaleler/index.html">Yazılar</a></li>
+          <li><a href="rivea.html">Rivea Beauty</a></li>
+        </ul>
+        <p class="nav-lang"><a href="../en/conversations.html" hreflang="en">EN</a></p>
+      </div>
+    </nav>
+  </header>
+
+  <div class="page-stack">
+    <div class="page-middle">
+  <section class="muhabbet is-first" id="muhabbet">
+    <p class="section-label reveal">Nehir ile muhabbet</p>
+    <h2 class="reveal">Balkon <em>muhabbetleri</em></h2>
+    <p class="muhabbet-sub reveal">
+      Nehir ve ben zaman zaman bir araya gelip konuşuyoruz.
+      Çay içiyoruz. Bazen derin, bazen saçma. Her zaman gerçek.
+    </p>
+
+    <div class="episode-grid">
+      <div class="episode-card reveal">
+        <p class="episode-number">Bölüm 01</p>
+        <h3>Market sabunları ve bilmediğimiz şeyler</h3>
+        <p>
+          Nehir market sabunundan şikâyet etmiyor; “Ne zararı var?” diyor. Ben de aynı soruyu merakla soruyorum:
+          içinde ne var, kim yazdı bu listeyi? İki ses aynı masada; kim kime ders vermiyor, sohbet öyle açılıyor.
+        </p>
+        <div class="episode-meta">
+          <span>Yakında</span>
+          <div class="episode-dot"></div>
+          <span>~10 dakika</span>
+        </div>
+      </div>
+      <div class="episode-card reveal reveal-delay-1">
+        <p class="episode-number">Bölüm 02</p>
+        <h3>Hız neden erdem sayılıyor</h3>
+        <p>
+          Nehir bir günde üç şehri dolaştığını keyifle anlatıyor; ben gülümsüyorum, bazen suskun kalıyorum.
+          Derdimiz ikna değil — biraz nefes payı bırakmak, yan yana durabilmek.
+        </p>
+        <div class="episode-meta">
+          <span>Yakında</span>
+          <div class="episode-dot"></div>
+          <span>~12 dakika</span>
+        </div>
+      </div>
+      <div class="episode-card reveal reveal-delay-2">
+        <p class="episode-number">Bölüm 03</p>
+        <h3>Yarısı kurumuş yaprak</h3>
+        <p>
+          Bahçede bir yaprak düştü; yarısı kurumuştu. Nehir işi bitmiş sanıyor, ben hâlâ eğiliyorum.
+          Sonunda anlatıyorum — yaprak ortada, sohbetin ağırlığı kime kaldı, net sayılmaz.
+        </p>
+        <div class="episode-meta">
+          <span>Yakında</span>
+          <div class="episode-dot"></div>
+          <span>~8 dakika</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    </div>
+
+  <footer>
+    <div>
+      <div class="footer-logo"><em>Nâgihan</em><span class="footer-tagline">Hiçbir yere yetişmeyenler kulübü</span></div>
+      <p class="footer-copy">© 2026</p>
+    </div>
+    <ul class="footer-links">
+      <li><a href="index.html">Ana sayfa</a></li>
+      <li><a href="makaleler/index.html">Yazılar</a></li>
+      <li><a href="https://www.instagram.com/hicbiryereyetismeyenlerkulubu/">Instagram</a></li>
+      <li><a href="https://riveabeauty.com">Rivea Beauty</a></li>
+    </ul>
+    <p class="footer-copy"><a class="dil-secimi" href="../choose-language.html">Dil seçimi</a></p>
+  </footer>
+  </div>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => observer.observe(el));
+    const nav = document.querySelector('.site-header');
+    window.addEventListener('scroll', () => {
+      if (!nav) return;
+      nav.style.boxShadow = window.scrollY > 40 ? '0 1px 0 rgba(139, 115, 85, 0.12)' : '0 1px 0 rgba(92, 74, 50, 0.06)';
+    });
+  </script>
+</body>
+</html>

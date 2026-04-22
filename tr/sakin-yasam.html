@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sakin yaşam — hiç bir yere yetişmeyenler kulübü</title>
+  <link rel="alternate" hreflang="en" href="../en/slow-living.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <nav aria-label="Ana menü">
+      <a href="index.html" class="nav-logo"><span>hiç bir yere yetişmeyenler kulübü</span></a>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="index.html">Ana sayfa</a></li>
+          <li><a href="hakkinda.html">Hakkımda</a></li>
+          <li><a href="sakin-yasam.html">Sakin yaşam</a></li>
+          <li><a href="muhabbet.html">Muhabbet</a></li>
+          <li><a href="makaleler/index.html">Yazılar</a></li>
+          <li><a href="rivea.html">Rivea Beauty</a></li>
+        </ul>
+        <p class="nav-lang"><a href="../en/slow-living.html" hreflang="en">EN</a></p>
+      </div>
+    </nav>
+  </header>
+
+  <div class="page-stack">
+    <div class="page-middle">
+  <section class="sakin is-first" id="sakin-yasam">
+    <div class="sakin-inner">
+      <p class="section-label reveal">Sakin yaşam üzerine</p>
+      <h2 class="reveal">
+        Hız bir erdem değil,<br>
+        bir <em>alışkanlık.</em>
+      </h2>
+      <p class="reveal sakin-lead">
+        Modern hayat bizi koşturuyor. Biz de koşuyoruz — çünkü herkes koşuyor.
+        Durmak cesaretsizlik gibi hissettiriyor artık. Ben buna inanmıyorum.
+      </p>
+
+      <div class="sakin-grid">
+        <div class="sakin-item reveal">
+          <div class="sakin-number">一</div>
+          <h3>Yavaşlamak</h3>
+          <p>
+            Yavaşlık tembellik değildir. Yavaşladığında görebileceğin şeyler
+            var — koşarken yanından geçip gittiğin şeyler.
+          </p>
+        </div>
+        <div class="sakin-item reveal reveal-delay-1">
+          <div class="sakin-number">二</div>
+          <h3>Ne sürdüğünü bilmek</h3>
+          <p>
+            Cildine sürdüğün şeyin içinde ne olduğunu biliyor musun?
+            Çoğumuz bilmiyoruz. Bu bilmemek bize zarar veriyor.
+          </p>
+        </div>
+        <div class="sakin-item reveal reveal-delay-2">
+          <div class="sakin-number">三</div>
+          <h3>Sadelik</h3>
+          <p>
+            Sade yaşam yoksulluk değildir. Aksine — neyin gerçekten
+            değerli olduğunu bilmektir. Bu ayrım her şeyi değiştirir.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    </div>
+
+  <footer>
+    <div>
+      <div class="footer-logo"><em>Nâgihan</em><span class="footer-tagline">Hiçbir yere yetişmeyenler kulübü</span></div>
+      <p class="footer-copy">© 2026</p>
+    </div>
+    <ul class="footer-links">
+      <li><a href="index.html">Ana sayfa</a></li>
+      <li><a href="makaleler/index.html">Yazılar</a></li>
+      <li><a href="https://www.instagram.com/hicbiryereyetismeyenlerkulubu/">Instagram</a></li>
+      <li><a href="https://riveabeauty.com">Rivea Beauty</a></li>
+    </ul>
+    <p class="footer-copy"><a class="dil-secimi" href="../choose-language.html">Dil seçimi</a></p>
+  </footer>
+  </div>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => observer.observe(el));
+    const nav = document.querySelector('.site-header');
+    window.addEventListener('scroll', () => {
+      if (!nav) return;
+      nav.style.boxShadow = window.scrollY > 40 ? '0 1px 0 rgba(139, 115, 85, 0.12)' : '0 1px 0 rgba(92, 74, 50, 0.06)';
+    });
+  </script>
+</body>
+</html>

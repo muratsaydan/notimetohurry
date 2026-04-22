@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Writing — No Time to Hurry</title>
+  <link rel="alternate" hreflang="tr" href="../../tr/makaleler/index.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/main.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <nav aria-label="Main menu">
+      <a href="../index.html" class="nav-logo"><span>No Time to Hurry</span></a>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../slow-living.html">Slow living</a></li>
+          <li><a href="../conversations.html">Conversations</a></li>
+          <li><a href="index.html">Writing</a></li>
+          <li><a href="../rivea.html">Rivea Beauty</a></li>
+        </ul>
+        <p class="nav-lang"><a href="../../tr/makaleler/index.html" hreflang="tr">TR</a></p>
+      </div>
+    </nav>
+  </header>
+
+  <div class="page-stack">
+    <div class="page-middle">
+  <main class="content-page">
+    <h1 class="page-title reveal">Writing</h1>
+    <p class="page-lead reveal">
+      Short pieces will be listed here. Add one HTML file per essay under this folder and link it from this page.
+    </p>
+
+    <ul class="article-list reveal" aria-label="Article list">
+    </ul>
+    <p class="empty-hint reveal">Nothing published yet. This list will grow when the first piece goes up.</p>
+  </main>
+
+    </div>
+
+  <footer>
+    <div>
+      <div class="footer-logo"><em>Nâgihan</em><span class="footer-tagline">No Time to Hurry</span></div>
+      <p class="footer-copy">© 2026</p>
+    </div>
+    <ul class="footer-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="https://www.instagram.com/hicbiryereyetismeyenlerkulubu/">Instagram</a></li>
+      <li><a href="https://riveabeauty.com">Rivea Beauty</a></li>
+    </ul>
+    <p class="footer-copy"><a class="dil-secimi" href="../../choose-language.html">Choose language</a></p>
+  </footer>
+  </div>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => observer.observe(el));
+    const nav = document.querySelector('.site-header');
+    window.addEventListener('scroll', () => {
+      if (!nav) return;
+      nav.style.boxShadow = window.scrollY > 40 ? '0 1px 0 rgba(139, 115, 85, 0.12)' : '0 1px 0 rgba(92, 74, 50, 0.06)';
+    });
+  </script>
+</body>
+</html>

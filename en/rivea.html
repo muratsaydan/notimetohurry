@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rivea Beauty — No Time to Hurry</title>
+  <link rel="alternate" hreflang="tr" href="../tr/rivea.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <nav aria-label="Main menu">
+      <a href="index.html" class="nav-logo"><span>No Time to Hurry</span></a>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="slow-living.html">Slow living</a></li>
+          <li><a href="conversations.html">Conversations</a></li>
+          <li><a href="articles/index.html">Writing</a></li>
+          <li><a href="rivea.html">Rivea Beauty</a></li>
+        </ul>
+        <p class="nav-lang"><a href="../tr/rivea.html" hreflang="tr">TR</a></p>
+      </div>
+    </nav>
+  </header>
+
+  <div class="page-stack">
+    <div class="page-middle">
+  <section class="rivea is-first" id="rivea">
+    <div class="rivea-content">
+      <p class="section-label reveal">Rivea Beauty</p>
+      <h2 class="reveal">
+        Soap whose contents<br>
+        you <em>actually know.</em>
+      </h2>
+      <div class="divider reveal"></div>
+      <p class="reveal reveal-delay-1">
+        I met Nehir through neighborhood chatter — nothing dramatic, just “there’s a girl nearby who actually makes the real thing.”
+        At the time I was the one squinting at supermarket labels until my head spun; I had half-facts and a lot of “maybe.”
+        When I knocked, laughter came from inside. I was still standing stiff on the doorstep; she had a sponge in her hand, said “come in,” and I stepped in. That was that.
+      </p>
+      <p class="reveal reveal-delay-2">
+        The first visits felt a little like a polite standoff — who is this, what does she want. Nehir talks fast, laughs fast; I warm up slowly.
+        Once we tried the soaps, the distance shrank. The scent is honest, and on the skin it doesn’t pick a fight with nonsense ingredients.
+        Saying it out loud sounds bigger than it felt; mostly it smelled like a kitchen and someone had put the tea on. An ordinary afternoon.
+      </p>
+      <p class="reveal reveal-delay-3">
+        Rivea Beauty didn’t arrive in one grand gesture. One evening on the balcony, while the tea went lukewarm, I asked why she didn’t sell them. She laughed.
+        For weeks we circled the same topic: I kept nudging, she kept saying who would even buy it. In the end she said fine — but together. That was the word I wanted anyway; it just fell out that way.
+        After that it turned practical: a name, colors, which oil, which ratio. I still read labels; Nehir mixes with her hands. Sometimes I ask myself what we’re really doing; the answer is usually just soap steam, nothing more staged than that.
+      </p>
+      <p class="reveal">
+        Olive oil, coconut oil, shea butter — these aren’t “revolution” ingredients you roll out on TV.
+        I don’t think of myself as living through especially deep moments there; most of the time it’s relief that they exist. If there is depth, it isn’t the kind I notice on purpose — maybe that’s better.
+      </p>
+      <a href="https://riveabeauty.com" class="rivea-link reveal reveal-delay-2">Visit Rivea Beauty</a>
+    </div>
+    <div class="rivea-image-grid reveal">
+      <div class="rivea-image-item">
+        <img src="../assets/NagihanRivea-yuz-sabun.jpg" alt="Nâgihan washing her face with natural soap" loading="lazy" decoding="async" class="rivea-lifestyle-img">
+      </div>
+      <div class="rivea-image-item">
+        <img src="../assets/NagihanRivea-ipek-kese.jpg" alt="Nâgihan gently exfoliating with a Rivea silk face mitt" loading="lazy" decoding="async" class="rivea-lifestyle-img rivea-lifestyle-img--square">
+      </div>
+      <div class="rivea-image-item">
+        <img src="../assets/NagihanRivea-porselen-sabunluk.jpg" alt="Nâgihan with Rivea handmade porcelain soap dish, Gelincik line, and natural soap" loading="lazy" decoding="async" class="rivea-lifestyle-img rivea-lifestyle-img--square">
+      </div>
+    </div>
+  </section>
+
+    </div>
+
+  <footer>
+    <div>
+      <div class="footer-logo"><em>Nâgihan</em><span class="footer-tagline">No Time to Hurry</span></div>
+      <p class="footer-copy">© 2026</p>
+    </div>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="articles/index.html">Writing</a></li>
+      <li><a href="https://www.instagram.com/hicbiryereyetismeyenlerkulubu/">Instagram</a></li>
+      <li><a href="https://riveabeauty.com">Rivea Beauty</a></li>
+    </ul>
+    <p class="footer-copy"><a class="dil-secimi" href="../choose-language.html">Choose language</a></p>
+  </footer>
+  </div>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => observer.observe(el));
+    const nav = document.querySelector('.site-header');
+    window.addEventListener('scroll', () => {
+      if (!nav) return;
+      nav.style.boxShadow = window.scrollY > 40 ? '0 1px 0 rgba(139, 115, 85, 0.12)' : '0 1px 0 rgba(92, 74, 50, 0.06)';
+    });
+  </script>
+</body>
+</html>

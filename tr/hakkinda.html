@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hakkımda — hiç bir yere yetişmeyenler kulübü</title>
+  <link rel="alternate" hreflang="en" href="../en/about.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <nav aria-label="Ana menü">
+      <a href="index.html" class="nav-logo"><span>hiç bir yere yetişmeyenler kulübü</span></a>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="index.html">Ana sayfa</a></li>
+          <li><a href="hakkinda.html">Hakkımda</a></li>
+          <li><a href="sakin-yasam.html">Sakin yaşam</a></li>
+          <li><a href="muhabbet.html">Muhabbet</a></li>
+          <li><a href="makaleler/index.html">Yazılar</a></li>
+          <li><a href="rivea.html">Rivea Beauty</a></li>
+        </ul>
+        <p class="nav-lang"><a href="../en/about.html" hreflang="en">EN</a></p>
+      </div>
+    </nav>
+  </header>
+
+  <div class="page-stack">
+    <div class="page-middle">
+  <section class="about is-first" id="hakkimda">
+    <div class="about-image-wrap reveal">
+      <div class="about-image-frame">
+        <img src="../assets/NagihanFoto.jpg" alt="Nâgihan" loading="lazy" decoding="async" class="about-photo">
+      </div>
+      <div class="about-image-accent"></div>
+    </div>
+    <div class="about-content">
+      <p class="section-label reveal">Kısaca</p>
+      <h2 class="reveal">
+        Ben Nâgihan
+      </h2>
+      <div class="divider reveal"></div>
+      <p class="reveal reveal-delay-1">
+        Kendini anlatmak garip bir iş; vitrine çıkmayı seven biri değilim.
+        Burayı da mümkün olduğunca düz, acele etmeden doldurmak istedim.
+      </p>
+      <p class="reveal reveal-delay-2">
+        Boğaziçi Üniversitesi İşletm BÖlümünü bitirdim, sonrasında İstanbul ve İngiltere'de çeşitli kurumsal firmalarda çalıştım ve sonrasında Mersin’e döndüm. Sakin yaşam fikrini benimsedim ve o yönde
+        yaşamaya çalışıyorum, Bu düşünceyaşam tarzını iyi bildiğimi söyleyemem, hâlâ öğreniyorum.
+      </p>
+      <p class="reveal reveal-delay-3">
+        Kitap okumaktan çok hoşlanırım; felsefeye merakım vardır, uzun zamandır.
+        Mevlâna’ya hayranım diyebilirim — Mesnevi’yi kaç kez okudupumu kendim bile bilmiyorum. 
+        Uzak Doğu düşüncesine de ilgim var; Tao’dan, Zen’den, sessiz okullardan
+        beslendiğim günler oluyor. bunların hepsi beni durduran, yavaşlatan şeyler bunlar.
+      </p>
+      <p class="reveal">
+        Bu sayfada niyetim büyük laflar etmek değil: sakin yaşam dedikleri
+        şeye dair öğreniyor oldupum şeyleri sizlerle paylaşmak ve benim gibi başka insanlar da varsa onlarla duygu paylaşmak amacım. 
+      </p>
+    </div>
+  </section>
+
+    </div>
+
+  <footer>
+    <div>
+      <div class="footer-logo"><em>Nâgihan</em><span class="footer-tagline">Hiçbir yere yetişmeyenler kulübü</span></div>
+      <p class="footer-copy">© 2026</p>
+    </div>
+    <ul class="footer-links">
+      <li><a href="index.html">Ana sayfa</a></li>
+      <li><a href="makaleler/index.html">Yazılar</a></li>
+      <li><a href="https://www.instagram.com/hicbiryereyetismeyenlerkulubu/">Instagram</a></li>
+      <li><a href="https://riveabeauty.com">Rivea Beauty</a></li>
+    </ul>
+    <p class="footer-copy"><a class="dil-secimi" href="../choose-language.html">Dil seçimi</a></p>
+  </footer>
+  </div>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => observer.observe(el));
+    const nav = document.querySelector('.site-header');
+    window.addEventListener('scroll', () => {
+      if (!nav) return;
+      nav.style.boxShadow = window.scrollY > 40 ? '0 1px 0 rgba(139, 115, 85, 0.12)' : '0 1px 0 rgba(92, 74, 50, 0.06)';
+    });
+  </script>
+</body>
+</html>

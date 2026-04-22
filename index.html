@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>notimetohurry.com</title>
+  <meta name="description" content="No Time to Hurry — yönlendiriliyor.">
+  <script>
+    (function () {
+      var q = window.location.search || '';
+      if (q.indexOf('lang=tr') !== -1) { window.location.replace('tr/index.html'); return; }
+      if (q.indexOf('lang=en') !== -1) { window.location.replace('en/index.html'); return; }
+      var list = navigator.languages && navigator.languages.length
+        ? navigator.languages
+        : [navigator.language || 'en'];
+      var tr = false;
+      for (var i = 0; i < list.length; i++) {
+        var code = (list[i] || '').toLowerCase();
+        if (code.indexOf('tr') === 0) { tr = true; break; }
+      }
+      window.location.replace(tr ? 'tr/index.html' : 'en/index.html');
+    })();
+  </script>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="redirect-body">
+  <p class="redirect-msg">Yönlendiriliyorsunuz…</p>
+  <noscript>
+    <div class="gateway-card" style="margin: 2rem auto;">
+      <p class="gateway-note">JavaScript kapalıysa dil seçin:</p>
+      <nav class="gateway-links">
+        <a href="tr/index.html">Türkçe</a>
+        <a href="en/index.html" class="secondary">English</a>
+      </nav>
+    </div>
+  </noscript>
+</body>
+</html>
