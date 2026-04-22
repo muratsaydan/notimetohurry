@@ -1,0 +1,57 @@
+# Deploy static site to production over SSH (rsync).
+#
+# Repository secrets (Settings → Secrets and variables → Actions):
+#   SSH_PRIVATE_KEY  — private key that can SSH as DEPLOY_USER to DEPLOY_HOST (full PEM, incl. BEGIN/END lines)
+#   DEPLOY_HOST      — e.g. 157.180.80.200
+#   DEPLOY_USER      — e.g. root
+#
+# Optional: restrict key on server to rsync + chmod only (ForceCommand / authorized_keys).
+
+name: Deploy to production
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-notimetohurry
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Start ssh-agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add SSH known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          ssh-keyscan -H "${{ secrets.DEPLOY_HOST }}" >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: Rsync site files
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          set -e
+          DEST="${DEPLOY_USER}@${DEPLOY_HOST}:/var/www/notimetohurry.com/"
+          rsync -avz --delete \
+            ./css/ ./en/ ./tr/ ./assets/ \
+            ./index.html ./choose-language.html \
+            "$DEST"
+
+      - name: Fix directory permissions for nginx
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          ssh "${DEPLOY_USER}@${DEPLOY_HOST}" "chmod -R a+rX /var/www/notimetohurry.com"
