@@ -1,62 +1,42 @@
-# Nâgihan Projesi
+# No Time to Hurry — Hiçbir Yere Yetişmeyenler Kulübü
 
-## Proje Özeti
+Yavaş yaşam (slow living) felsefesini sade bir dille ama en derin katmanlarına kadar
+anlatan, birinci şahıs (Murat Saydan) sesiyle yazılmış bir **seyir defteri** ve etik
+markalardan oluşan bir ekosistem. Rivea Beauty bu ekosistemin bir parçasıdır, öznesi
+değil.
 
-Nâgihan, sakin yaşam felsefesini temsil eden sanal bir karakter. Rivea Beauty ile bağlantılı, Mersin'de yaşayan, Londra geçmişi olan, 34 yaşında bir kadın.
+- **Alan adı:** [notimetohurry.com](https://notimetohurry.com)
+- **Diller:** Türkçe (öncelikli) + İngilizce
+- **İmza unsuru:** Her yazıda, en ağır fikri tatlıya bağlayan bir **karikatür**.
 
-## Klasör Yapısı
+Tüm strateji, ton, marka mimarisi ve içerik ilkeleri için tek kaynak:
+**[`proje-dokumani.md`](proje-dokumani.md)**.
 
-```
-nagihan-project/
-├── karakter/
-│   ├── hayat-hikayesi.md       → Nâgihan'ın tam hayat hikayesi (iç belge)
-│   ├── karakter-anayasasi.md   → İçerik üretim rehberi ve kırmızı çizgiler
-│   └── karakter-profili.md     → Hızlı referans kartı
-├── site/
-│   ├── index.html              → Ana web sitesi
-│   └── assets/                 → Görseller buraya eklenecek
-└── README.md                   → Bu dosya
-```
+## Konumlandırma (özet)
 
-## Görseller İçin
-
-`site/assets/` klasörüne şu isimlendirmeyle görseller ekle:
-
-- `nagihan-hero.jpg` → Hero bölümü ana görsel
-- `nagihan-portrait.jpg` → Hakkımda bölümü portre
-- `rivea-1.jpg`, `rivea-2.jpg`, `rivea-3.jpg` → Rivea ürün görselleri
-
-Görseller eklendikten sonra `index.html` içindeki yorum satırlarını (`<!-- -->`) kaldır.
-
-## Renk Paleti
-
-| İsim | Kod | Kullanım |
-|------|-----|----------|
-| Kum | #f0ebe1 | Arka plan varyantı |
-| Toprak | #8b7355 | Ana vurgu rengi |
-| Koyu toprak | #5c4a32 | Başlıklar, koyu arka plan |
-| Zeytin | #6b7c5a | İkincil vurgu |
-| Altın | #c9a96e | Çizgiler, aksan |
-| Derin | #2c2416 | Ana metin rengi |
-
-## Önemli Notlar
-
-- Nâgihan sanal bir karakter — site bunu açıkça belirtiyor
-- Grenfell asla açıkça anılmaz — bu iç belgede kalır
-- İpek'in yanıkları hiçbir içerikte gösterilmez
-- Rivea Beauty ayrı bir site ([https://riveabeauty.com](https://riveabeauty.com)) — bu site oraya bağlantı verir
+Türkiye'de bu felsefeyi bütünlüklü anlatan bir yapı yok; bu boşluğun üzerine oturuyoruz.
+Guru değil, tanık: "yavaşla" demeden, "ben yavaşladım, şunlar değişti" diyoruz. Hızı
+reddetmeden — işin ve teknolojinin tam ortasında — kendi ritmini korumak.
 
 ## Teknoloji
 
-Saf HTML/CSS/JS — framework yok, dependency yok. Herhangi bir web sunucusuna doğrudan yüklenebilir.
+Saf HTML/CSS/JS — framework yok, dependency yok. Push → GitHub Actions → sunucuya rsync
+→ `notimetohurry.com` canlı. Deploy tanımı: [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml),
+sunucu ayarı: [`deploy/notimetohurry.com.nginx`](deploy/notimetohurry.com.nginx).
 
-## Ortak yerel sırlar (repo dışı — tüm projeler)
+## Slow Living Radar
 
-API anahtarları, şifreler vb. **tek dosyada** tutulur; repoya yazılmaz. Cursor kuralı: agent göreve başlarken bu dosyayı okur, aynı bilgiler için tekrar tekrar sormaz.
+İçerik fikri beslemesi için n8n tabanlı ekosistem tarayıcısı (RSS + Google Haberler).
+Ayrıntı: [`n8n-slow-living-radar.md`](n8n-slow-living-radar.md).
 
-| | |
-|---|---|
-| **Gerçek dosya** | `%USERPROFILE%\.cursor\secrets.env` |
-| **Şablon** | `%USERPROFILE%\.cursor\secrets.env.example` → kopyalayıp `secrets.env` yapın |
+## Durum
 
-Bu repoda araçlar için gerekiyorsa kökte **`.env`** üretilebilir (içerik `secrets.env`’den türetilir); `.env` git’e girmez. Anahtar isimleri için repoda **`.env.example`** (değersiz) bakın.
+Proje yeniden kuruluyor. Önceki sanal karakter (Nâgihan) yapısı tamamen kaldırıldı;
+merkeze gerçek kişi ve birinci şahıs anlatım alındı. Site içeriği sıfırdan inşa
+edilecek — bu README ve `proje-dokumani.md` güncel omurgadır.
+
+## Ortak yerel sırlar (repo dışı)
+
+API anahtarları, şifreler vb. repoya yazılmaz; global `%USERPROFILE%\.cursor\secrets.env`
+dosyasında tutulur. Repoda araçlar için gerekiyorsa kökte `.env` üretilir (git'e girmez);
+anahtar isimleri için `.env.example`'a bakın.

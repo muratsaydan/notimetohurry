@@ -1,1092 +1,211 @@
+/* ============================================================
+   No Time to Hurry — Hiçbir Yere Yetişmeyenler Kulübü
+   Tasarım sistemi. Sade, sıcak, telaşsız.
+   Saf CSS — framework yok, dependency yok.
+   ============================================================ */
+
 :root {
-      --kum: #f0ebe1;
-      --krem: #e8e0d0;
-      --toprak: #8b7355;
-      --koyu-toprak: #5c4a32;
-      --zeytin: #6b7c5a;
-      --sis: #c4b8a8;
-      --derin: #2c2416;
-      --beyaz: #faf7f2;
-      --altin: #c9a96e;
-      --content-top: 7rem;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background-color: var(--beyaz);
-      color: var(--derin);
-      font-family: 'Noto Serif', serif;
-      font-weight: 300;
-      overflow-x: hidden;
-    }
-
-    /* Sticky footer: kısa sayfalarda footer görünür alanın altında */
-    .page-stack {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      min-height: 100dvh;
-    }
-
-    .page-middle {
-      flex: 1 1 auto;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .page-middle > main.content-page {
-      flex: 1 1 auto;
-    }
-
-    /* GRAIN OVERLAY */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 1000;
-      opacity: 0.4;
-    }
-
-    /* SITE HEADER */
-    .site-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 100;
-      background: var(--beyaz);
-      box-shadow: 0 1px 0 rgba(92, 74, 50, 0.06);
-    }
-
-    .site-header nav {
-      width: 100%;
-      padding: 1.25rem 4rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem 2rem;
-      background: linear-gradient(to bottom, var(--beyaz) 0%, rgba(250, 247, 242, 0.98) 100%);
-    }
-
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 2.5rem;
-      flex-wrap: wrap;
-    }
-
-    .nav-lang a {
-      font-family: 'Noto Serif', serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--altin);
-      text-decoration: none;
-    }
-
-    .nav-lang a:hover {
-      color: var(--koyu-toprak);
-    }
-
-    .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(0.78rem, 1.45vw, 1.12rem);
-      font-weight: 300;
-      letter-spacing: 0.05em;
-      line-height: 1.3;
-      color: var(--koyu-toprak);
-      text-decoration: none;
-      flex: 0 1 auto;
-      min-width: 0;
-      max-width: min(100%, 26rem);
-    }
-
-    .nav-logo span {
-      font-style: italic;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1.35rem;
-      list-style: none;
-      align-items: center;
-    }
-
-    .nav-links a {
-      font-family: 'Noto Serif', serif;
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--toprak);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--koyu-toprak);
-    }
-
-    /* HERO */
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-left {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 10rem 4rem 4rem 6rem;
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero-eyebrow {
-      font-size: 0.7rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--toprak);
-      margin-bottom: 2rem;
-      opacity: 0;
-      animation: fadeUp 1s ease 0.3s forwards;
-    }
-
-    .hero-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3.5rem, 6vw, 6rem);
-      font-weight: 300;
-      line-height: 1.05;
-      color: var(--derin);
-      margin-bottom: 2rem;
-      opacity: 0;
-      animation: fadeUp 1s ease 0.5s forwards;
-    }
-
-    .hero-title em {
-      font-style: italic;
-      color: var(--toprak);
-    }
-
-    .hero-subtitle {
-      font-size: 1rem;
-      line-height: 1.9;
-      color: var(--koyu-toprak);
-      max-width: 420px;
-      margin-bottom: 3rem;
-      opacity: 0;
-      animation: fadeUp 1s ease 0.7s forwards;
-    }
-
-    .hero-quote {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1.1rem;
-      color: var(--sis);
-      border-left: 1px solid var(--altin);
-      padding-left: 1.5rem;
-      opacity: 0;
-      animation: fadeUp 1s ease 0.9s forwards;
-    }
-
-    .hero-quote cite {
-      display: block;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      font-style: normal;
-      color: var(--toprak);
-      margin-top: 0.8rem;
-    }
-
-    .hero-right {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-image-container {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      animation: fadeIn 1.5s ease 0.2s forwards;
-    }
-
-    .hero-image-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      filter: sepia(20%) saturate(80%);
-    }
-
-    .hero-image-container img.hero-photo-nature {
-      object-position: center center;
-      filter: sepia(12%) saturate(88%) brightness(1.02);
-    }
-
-    .hero-image-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to right, var(--beyaz) 0%, transparent 30%),
-                  linear-gradient(to top, var(--beyaz) 0%, transparent 20%);
-    }
-
-    /* PLACEHOLDER when no image */
-    .hero-placeholder {
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, var(--kum) 0%, var(--krem) 40%, var(--sis) 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hero-placeholder-inner {
-      text-align: center;
-      color: var(--toprak);
-      opacity: 0.4;
-    }
-
-    .hero-placeholder-inner svg {
-      width: 80px;
-      height: 80px;
-      margin-bottom: 1rem;
-    }
-
-    .hero-placeholder-inner p {
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-    }
-
-    /* SCROLL INDICATOR */
-    .scroll-indicator {
-      position: absolute;
-      bottom: 3rem;
-      left: 6rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      opacity: 0;
-      animation: fadeUp 1s ease 1.2s forwards;
-      text-decoration: none;
-      color: inherit;
-      cursor: pointer;
-    }
-
-    .scroll-line {
-      width: 60px;
-      height: 1px;
-      background: var(--altin);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .scroll-line::after {
-      content: '';
-      position: absolute;
-      left: -100%;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--koyu-toprak);
-      animation: slideLine 2s ease infinite;
-    }
-
-    .scroll-text {
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--toprak);
-    }
-
-    /* SECTIONS */
-    section {
-      padding: 8rem 6rem;
-    }
-
-    section.is-first {
-      padding-top: 10rem;
-    }
-
-    .section-label {
-      font-size: 0.65rem;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: var(--altin);
-      margin-bottom: 1.5rem;
-    }
-
-    /* KİM BEN */
-    .about {
-      background-color: var(--kum);
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 8rem;
-      align-items: center;
-    }
-
-    .about-image-wrap {
-      position: relative;
-    }
-
-    .about-image-frame {
-      width: 100%;
-      padding-bottom: 130%;
-      position: relative;
-      overflow: hidden;
-      background: var(--krem);
-    }
-
-    .about-image-frame img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: sepia(15%) saturate(85%);
-    }
-
-    .about-image-frame img.about-photo {
-      object-position: center 22%;
-    }
-
-    .about-image-placeholder {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(160deg, var(--krem) 0%, var(--sis) 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .about-image-accent {
-      position: absolute;
-      bottom: -1.5rem;
-      right: -1.5rem;
-      width: 60%;
-      height: 60%;
-      border: 1px solid var(--altin);
-      z-index: -1;
-    }
-
-    .about-content h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.5rem, 4vw, 3.8rem);
-      font-weight: 300;
-      line-height: 1.15;
-      color: var(--derin);
-      margin-bottom: 2.5rem;
-    }
-
-    .about-content h2 em {
-      font-style: italic;
-      color: var(--toprak);
-    }
-
-    .about-content p {
-      font-size: 0.95rem;
-      line-height: 2;
-      color: var(--koyu-toprak);
-      margin-bottom: 1.5rem;
-      max-width: 500px;
-    }
-
-    /* SAKİN YAŞAM */
-    .sakin {
-      background-color: var(--beyaz);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .sakin::before {
-      content: 'سكون';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 40vw;
-      color: var(--krem);
-      font-family: 'Cormorant Garamond', serif;
-      pointer-events: none;
-      opacity: 0.3;
-      line-height: 1;
-    }
-
-    .sakin-inner {
-      position: relative;
-      z-index: 2;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .sakin h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.5rem, 5vw, 4.5rem);
-      font-weight: 300;
-      color: var(--derin);
-      margin-bottom: 3rem;
-      line-height: 1.1;
-    }
-
-    .sakin h2 em {
-      font-style: italic;
-      color: var(--toprak);
-    }
-
-    .sakin-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 4rem;
-      margin-top: 5rem;
-      text-align: left;
-    }
-
-    .sakin-item {
-      position: relative;
-    }
-
-    .sakin-number {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 5rem;
-      color: var(--krem);
-      line-height: 1;
-      margin-bottom: 1rem;
-      font-weight: 300;
-    }
-
-    .sakin-item h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
-      font-weight: 400;
-      color: var(--derin);
-      margin-bottom: 1rem;
-    }
-
-    .sakin-item p {
-      font-size: 0.9rem;
-      line-height: 1.9;
-      color: var(--toprak);
-    }
-
-    /* RİVEA */
-    .rivea {
-      background: var(--koyu-toprak);
-      color: var(--kum);
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 6rem;
-      align-items: center;
-    }
-
-    .rivea .section-label {
-      color: var(--altin);
-    }
-
-    .rivea h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.5rem, 4vw, 3.8rem);
-      font-weight: 300;
-      color: var(--kum);
-      margin-bottom: 2rem;
-      line-height: 1.15;
-    }
-
-    .rivea h2 em {
-      font-style: italic;
-      color: var(--altin);
-    }
-
-    .rivea p {
-      font-size: 0.95rem;
-      line-height: 2;
-      color: var(--sis);
-      margin-bottom: 1.5rem;
-    }
-
-    .rivea-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 1rem;
-      font-size: 0.75rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--altin);
-      text-decoration: none;
-      margin-top: 2rem;
-      transition: gap 0.3s ease;
-    }
-
-    .rivea-link:hover {
-      gap: 1.5rem;
-    }
-
-    .rivea-link::after {
-      content: '→';
-      font-size: 1rem;
-    }
-
-    .rivea-image-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto;
-      gap: 1rem;
-    }
-
-    .rivea-image-item {
-      background: var(--toprak);
-      overflow: hidden;
-      position: relative;
-    }
-
-    .rivea-image-item:first-child {
-      grid-column: 1 / -1;
-      padding-bottom: 55%;
-    }
-
-    .rivea-image-item:not(:first-child) {
-      padding-bottom: 100%;
-    }
-
-    .rivea-image-item img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: sepia(20%) saturate(70%);
-    }
-
-    .rivea-image-item img.rivea-lifestyle-img {
-      object-position: center 28%;
-      filter: sepia(14%) saturate(78%) brightness(1.06);
-    }
-
-    .rivea-image-item img.rivea-lifestyle-img--square {
-      object-position: center 30%;
-    }
-
-    .rivea-image-placeholder {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255,255,255,0.05);
-    }
-
-    .rivea-image-placeholder span {
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--sis);
-      opacity: 0.5;
-    }
-
-    /* MUHABBET / PODCAST */
-    .muhabbet {
-      background: var(--kum);
-      text-align: center;
-    }
-
-    .muhabbet h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.5rem, 4vw, 3.5rem);
-      font-weight: 300;
-      color: var(--derin);
-      margin-bottom: 1.5rem;
-    }
-
-    .muhabbet h2 em {
-      font-style: italic;
-      color: var(--toprak);
-    }
-
-    .muhabbet-sub {
-      font-size: 0.9rem;
-      color: var(--toprak);
-      max-width: 500px;
-      margin: 0 auto 5rem;
-      line-height: 1.9;
-    }
-
-    .muhabbet .episode-grid {
-      max-width: 72rem;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .sakin-lead {
-      font-size: 1rem;
-      line-height: 2;
-      color: var(--toprak);
-      max-width: 580px;
-      margin: 0 auto;
-    }
-
-    .episode-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      text-align: left;
-    }
-
-    .episode-card {
-      background: var(--beyaz);
-      padding: 2.5rem;
-      position: relative;
-      transition: transform 0.3s ease;
-      cursor: pointer;
-    }
-
-    .episode-card:hover {
-      transform: translateY(-4px);
-    }
-
-    .episode-number {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.75rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--altin);
-      margin-bottom: 1.5rem;
-    }
-
-    .episode-card h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      font-weight: 400;
-      color: var(--derin);
-      margin-bottom: 1rem;
-      line-height: 1.3;
-    }
-
-    .episode-card p {
-      font-size: 0.85rem;
-      line-height: 1.8;
-      color: var(--toprak);
-      margin-bottom: 2rem;
-    }
-
-    .episode-meta {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--sis);
-    }
-
-    .episode-dot {
-      width: 4px;
-      height: 4px;
-      background: var(--altin);
-      border-radius: 50%;
-    }
-
-    /* SANAL KARAKTER NOTU */
-    .sanal-not {
-      background: var(--beyaz);
-      padding: 6rem;
-      text-align: center;
-      border-top: 1px solid var(--krem);
-    }
-
-    .sanal-not-inner {
-      max-width: 650px;
-      margin: 0 auto;
-    }
-
-    .sanal-not h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.75rem;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: var(--altin);
-      margin-bottom: 2rem;
-    }
-
-    .sanal-not p {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1.15rem;
-      line-height: 1.9;
-      color: var(--toprak);
-    }
-
-    /* FOOTER */
-    footer {
-      background: var(--derin);
-      padding: 4rem 6rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 2rem;
-    }
-
-    .footer-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
-      font-weight: 300;
-      letter-spacing: 0.15em;
-      color: var(--kum);
-    }
-
-    .footer-logo em {
-      font-style: italic;
-      color: var(--altin);
-    }
-
-    .footer-tagline {
-      display: block;
-      margin-top: 0.35rem;
-      font-family: 'Noto Serif', serif;
-      font-size: 0.55rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--sis);
-      font-style: normal;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-    }
-
-    .footer-links a {
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--sis);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .footer-links a:hover {
-      color: var(--altin);
-    }
-
-    .footer-copy {
-      font-size: 0.7rem;
-      color: var(--toprak);
-      letter-spacing: 0.1em;
-    }
-
-    .footer-copy a.dil-secimi {
-      color: var(--sis);
-      text-decoration: none;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-size: 0.65rem;
-    }
-
-    .footer-copy a.dil-secimi:hover {
-      color: var(--altin);
-    }
-
-    /* ANIMATIONS */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes slideLine {
-      0% { left: -100%; }
-      100% { left: 100%; }
-    }
-
-    /* SCROLL REVEAL */
-    .reveal {
-      opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.25s; }
-    .reveal-delay-3 { transition-delay: 0.4s; }
-
-    /* DIVIDER */
-    .divider {
-      width: 40px;
-      height: 1px;
-      background: var(--altin);
-      margin: 2.5rem 0;
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 1024px) {
-      .site-header nav { padding: 1rem 1.5rem; }
-      .nav-logo {
-        flex: 1 1 100%;
-        max-width: none;
-        text-align: center;
-        font-size: clamp(0.8rem, 3vw, 1.05rem);
-      }
-      section { padding: 6rem 3rem; }
-      .hero { grid-template-columns: 1fr; }
-      .hero-left { padding: 9rem 3rem 4rem; }
-      .hero-right { display: none; }
-      .about { grid-template-columns: 1fr; gap: 4rem; }
-      .sakin-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .rivea { grid-template-columns: 1fr; }
-      .episode-grid { grid-template-columns: 1fr; }
-      footer { flex-direction: column; gap: 2rem; text-align: center; }
-      .sanal-not { padding: 4rem 2rem; }
-      .nav-links { gap: 1.25rem; flex-wrap: wrap; justify-content: center; }
-      .nav-right { width: 100%; justify-content: space-between; }
-      .content-page { padding-left: 2rem !important; padding-right: 2rem !important; }
-      .home-panels { padding: 4rem 2rem 5rem; }
-      section.is-first { padding-top: 8rem; }
-      .scroll-indicator { left: 2rem; bottom: 2rem; }
-      main.content-page { padding-top: 7rem !important; }
-    }
-
-    /* INNER PAGES */
-    main.content-page {
-      padding: var(--content-top) 6rem 5rem;
-      max-width: 52rem;
-      margin: 0 auto;
-    }
-
-    main.content-page.wide {
-      max-width: 72rem;
-    }
-
-    .page-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.2rem, 4vw, 3.2rem);
-      font-weight: 300;
-      color: var(--derin);
-      margin-bottom: 1rem;
-      line-height: 1.15;
-    }
-
-    .page-lead {
-      font-size: 1rem;
-      line-height: 1.95;
-      color: var(--toprak);
-      margin-bottom: 2.5rem;
-      max-width: 40rem;
-    }
-
-    .article-list {
-      list-style: none;
-      margin-top: 2rem;
-    }
-
-    .article-list li {
-      border-bottom: 1px solid var(--krem);
-      padding: 1.5rem 0;
-    }
-
-    .article-list a {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.35rem;
-      color: var(--derin);
-      text-decoration: none;
-    }
-
-    .article-list a:hover {
-      color: var(--toprak);
-    }
-
-    .article-list .meta {
-      display: block;
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--sis);
-      margin-top: 0.5rem;
-    }
-
-    .empty-hint {
-      font-style: italic;
-      color: var(--toprak);
-      margin-top: 2rem;
-    }
-
-    /* ROOT LANGUAGE GATE */
-    body.gateway-body {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      text-align: center;
-    }
-
-    .gateway-card {
-      max-width: 28rem;
-      padding: 3rem 2.5rem;
-      background: var(--beyaz);
-      border: 1px solid var(--krem);
-      box-shadow: 0 12px 40px rgba(44, 36, 22, 0.06);
-    }
-
-    .gateway-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.75rem, 4vw, 2.25rem);
-      font-weight: 300;
-      letter-spacing: 0.06em;
-      color: var(--derin);
-      margin-bottom: 0.75rem;
-    }
-
-    .gateway-domain {
-      font-size: 0.72rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--toprak);
-      margin-bottom: 2.5rem;
-    }
-
-    .gateway-links {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .gateway-links a {
-      display: block;
-      padding: 0.9rem 1.25rem;
-      font-size: 0.75rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--beyaz);
-      background: var(--koyu-toprak);
-      border: 1px solid var(--koyu-toprak);
-      transition: background 0.25s ease, color 0.25s ease;
-    }
-
-    .gateway-links a.secondary {
-      color: var(--koyu-toprak);
-      background: transparent;
-    }
-
-    .gateway-links a:hover {
-      background: var(--toprak);
-      border-color: var(--toprak);
-      color: var(--beyaz);
-    }
-
-    .gateway-links a.secondary:hover {
-      background: var(--kum);
-      color: var(--derin);
-      border-color: var(--altin);
-    }
-
-    .gateway-note {
-      margin-top: 2rem;
-      font-size: 0.72rem;
-      color: var(--sis);
-      line-height: 1.6;
-    }
-
-    .gateway-note--tight {
-      margin-top: 0.75rem;
-      font-size: 0.65rem;
-    }
-
-    .gateway-note a {
-      color: var(--toprak);
-    }
-
-    .gateway-note--en {
-      margin-top: 1rem;
-    }
-
-    body.redirect-body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-    }
-
-    .redirect-msg {
-      font-size: 0.85rem;
-      color: var(--toprak);
-      letter-spacing: 0.06em;
-    }
-
-    /* HOME PANEL GRID */
-    .home-panels {
-      padding: 5rem 6rem 7rem;
-      background: var(--beyaz);
-    }
-
-    .home-panels-inner {
-      max-width: 72rem;
-      margin: 0 auto;
-    }
-
-    .home-panels .section-label {
-      margin-bottom: 2rem;
-    }
-
-    .home-panels-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 1.25rem;
-    }
-
-    .home-panel {
-      display: block;
-      padding: 1.75rem 1.5rem;
-      text-decoration: none;
-      color: inherit;
-      border: 1px solid var(--krem);
-      background: var(--beyaz);
-      transition: border-color 0.25s ease, transform 0.25s ease;
-    }
-
-    .home-panel:hover {
-      border-color: var(--altin);
-      transform: translateY(-3px);
-    }
-
-    .home-panel h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
-      font-weight: 400;
-      color: var(--derin);
-      margin-bottom: 0.6rem;
-    }
-
-    .home-panel p {
-      font-size: 0.82rem;
-      line-height: 1.75;
-      color: var(--toprak);
-    }
+  /* Renk — sıcak toprak paleti */
+  --bg:        #f5f0e6;   /* kağıt / ana arka plan */
+  --bg-alt:    #ece4d5;   /* bölüm arka plan varyantı */
+  --bg-deep:   #2c2416;   /* koyu bölümler */
+  --text:      #2c2416;   /* ana metin */
+  --text-soft: #6b6153;   /* ikincil metin */
+  --text-inv:  #efe8da;   /* koyu zemin üstü metin */
+  --accent:    #6b7c5a;   /* adaçayı — bağlantı / vurgu */
+  --accent-deep:#54633f;
+  --earth:     #8b7355;   /* toprak — eyebrow / aksan */
+  --gold:      #c9a96e;   /* altın — ince çizgiler */
+  --line:      rgba(44, 36, 22, 0.14);
+  --line-soft: rgba(44, 36, 22, 0.08);
+
+  /* Tipografi */
+  --serif-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --serif-body:    "Newsreader", Georgia, "Times New Roman", serif;
+  --sans:          system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Ölçü */
+  --measure: 34rem;        /* dar okuma sütunu (~65-70 karakter) */
+  --wide:    64rem;        /* geniş bölüm sınırı */
+  --gap:     clamp(3.5rem, 8vw, 7rem);  /* bölümler arası nefes */
+}
+
+/* ---------- Sıfırlama ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--serif-body);
+  font-size: 1.125rem;
+  line-height: 1.75;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--accent-deep); text-decoration: none; }
+a:hover { color: var(--earth); }
+h1, h2, h3 { font-family: var(--serif-display); font-weight: 400; line-height: 1.15; color: var(--text); }
+
+/* ---------- Yerleşim yardımcıları ---------- */
+.wrap   { width: 100%; max-width: var(--wide);  margin-inline: auto; padding-inline: clamp(1.25rem, 5vw, 2.5rem); }
+.column { width: 100%; max-width: var(--measure); margin-inline: auto; padding-inline: clamp(1.25rem, 5vw, 2.5rem); }
+section { padding-block: var(--gap); }
+.bg-alt  { background: var(--bg-alt); }
+.bg-deep { background: var(--bg-deep); color: var(--text-inv); }
+.bg-deep h1, .bg-deep h2, .bg-deep h3 { color: var(--text-inv); }
+.bg-deep a { color: var(--gold); }
+
+/* ---------- Üst menü ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 20;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line-soft);
+}
+.site-header nav {
+  max-width: var(--wide); margin-inline: auto;
+  padding: 1rem clamp(1.25rem, 5vw, 2.5rem);
+  display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+}
+.nav-logo { font-family: var(--serif-display); font-size: 1.05rem; letter-spacing: .01em; color: var(--text); }
+.nav-logo:hover { color: var(--earth); }
+.nav-right { display: flex; align-items: center; gap: 1.5rem; }
+.nav-links { list-style: none; display: flex; gap: 1.35rem; margin: 0; padding: 0; }
+.nav-links a {
+  font-family: var(--sans); font-size: .82rem; letter-spacing: .04em;
+  text-transform: lowercase; color: var(--text-soft);
+}
+.nav-links a:hover { color: var(--text); }
+.nav-lang { margin: 0; }
+.nav-lang a {
+  font-family: var(--sans); font-size: .72rem; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--earth);
+  border: 1px solid var(--line); border-radius: 999px; padding: .28rem .6rem;
+}
+.nav-lang a:hover { background: var(--earth); color: var(--bg); border-color: var(--earth); }
+
+/* ---------- Hero ---------- */
+.hero { padding-block: clamp(4rem, 12vw, 9rem); }
+.eyebrow {
+  font-family: var(--sans); font-size: .78rem; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--earth); margin: 0 0 1.5rem;
+}
+.hero h1 {
+  font-size: clamp(2.6rem, 8vw, 5rem);
+  margin: 0 0 1.5rem; letter-spacing: -0.01em;
+}
+.hero h1 em { font-style: italic; color: var(--earth); }
+.lead { font-size: clamp(1.2rem, 2.4vw, 1.4rem); color: var(--text-soft); max-width: 32rem; margin: 0 0 2rem; }
+
+/* ---------- Tipografik ritim ---------- */
+h2 { font-size: clamp(1.9rem, 4.5vw, 2.9rem); margin: 0 0 1.25rem; }
+h3 { font-size: 1.4rem; margin: 0 0 .6rem; }
+p  { margin: 0 0 1.4rem; }
+.muted { color: var(--text-soft); }
+.section-label {
+  font-family: var(--sans); font-size: .78rem; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--earth); margin: 0 0 1.5rem;
+}
+
+/* ---------- Manifesto / ilke kartları ---------- */
+.pillars { display: grid; gap: 2.5rem; grid-template-columns: 1fr; margin-top: 2.5rem; }
+@media (min-width: 720px) { .pillars { grid-template-columns: repeat(3, 1fr); gap: 2rem; } }
+.pillar { }
+.pillar .n {
+  font-family: var(--serif-display); font-size: 1rem; color: var(--gold);
+  display: block; margin-bottom: .75rem;
+}
+.pillar h3 { margin-bottom: .5rem; }
+.pillar p { font-size: 1rem; color: var(--text-soft); margin: 0; }
+
+/* ---------- Anti-tanım ---------- */
+.anti p { font-size: clamp(1.3rem, 3vw, 1.7rem); font-style: italic; color: var(--text); line-height: 1.5; }
+.anti strong { font-style: normal; color: var(--earth); font-weight: 400; }
+
+/* ---------- İlk yazı kartı ---------- */
+.feature {
+  border: 1px solid var(--line); border-radius: 6px;
+  padding: clamp(1.75rem, 4vw, 2.75rem); background: var(--bg);
+  display: block; transition: border-color .3s ease, transform .3s ease;
+}
+.feature:hover { border-color: var(--gold); transform: translateY(-2px); }
+.feature .kicker { font-family: var(--sans); font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: var(--earth); }
+.feature h3 { font-size: clamp(1.5rem, 3.5vw, 2rem); margin: .75rem 0 .75rem; color: var(--text); }
+.feature p { color: var(--text-soft); margin: 0; }
+.feature .more { font-family: var(--sans); font-size: .85rem; color: var(--accent-deep); margin-top: 1.25rem; display: inline-block; }
+
+/* ---------- Buton ---------- */
+.btn {
+  display: inline-block; font-family: var(--sans); font-size: .85rem; letter-spacing: .04em;
+  padding: .8rem 1.6rem; border-radius: 999px;
+  background: var(--accent); color: var(--bg); border: 1px solid var(--accent);
+}
+.btn:hover { background: var(--accent-deep); color: var(--bg); border-color: var(--accent-deep); }
+.btn-ghost { background: transparent; color: var(--accent-deep); border-color: var(--line); }
+.btn-ghost:hover { background: transparent; color: var(--earth); border-color: var(--earth); }
+
+/* ---------- Makale gövdesi (prose) ---------- */
+.prose { }
+.prose > * { max-width: var(--measure); margin-inline: auto; }
+.prose h2 { margin-top: 3rem; }
+.prose h3 { margin-top: 2rem; }
+.prose blockquote {
+  border-left: 2px solid var(--gold); margin: 2rem auto; padding-left: 1.5rem;
+  font-style: italic; color: var(--text-soft);
+}
+
+/* ---------- Karikatür figürü (imza unsuru) ---------- */
+figure.caricature {
+  max-width: 42rem; margin: 3.5rem auto; text-align: center;
+}
+figure.caricature img {
+  margin-inline: auto; border-radius: 6px; border: 1px solid var(--line-soft);
+  background: var(--bg-alt);
+}
+figure.caricature figcaption {
+  font-family: var(--sans); font-size: .8rem; color: var(--text-soft);
+  margin-top: .9rem; letter-spacing: .02em;
+}
+/* içerik gelene kadar yer tutucu */
+figure.caricature.placeholder .frame {
+  aspect-ratio: 3 / 2; border: 1px dashed var(--gold); border-radius: 6px;
+  display: grid; place-items: center; background: var(--bg-alt);
+  color: var(--earth); font-family: var(--sans); font-size: .85rem; letter-spacing: .1em; text-transform: uppercase;
+}
+
+/* ---------- Alt bilgi ---------- */
+.site-footer { border-top: 1px solid var(--line); padding-block: 3.5rem; background: var(--bg-alt); }
+.site-footer .wrap { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between; align-items: flex-start; }
+.site-footer p { margin: 0; font-size: .95rem; color: var(--text-soft); }
+.site-footer a { color: var(--accent-deep); }
+.footer-brand { font-family: var(--serif-display); font-size: 1.1rem; color: var(--text); }
+.footer-links { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .5rem; }
+.footer-links a { font-family: var(--sans); font-size: .85rem; color: var(--text-soft); }
+.footer-links a:hover { color: var(--text); }
+
+/* ---------- Dil kapısı (kök index) ---------- */
+.gate { min-height: 100vh; display: grid; place-items: center; text-align: center; padding: 2rem; }
+.gate .eyebrow { margin-bottom: 1.25rem; }
+.gate h1 { font-size: clamp(2.4rem, 7vw, 4rem); margin: 0 0 .5rem; }
+.gate .sub { color: var(--text-soft); font-style: italic; margin: 0 0 2.5rem; }
+.gate .choices { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.gate .choices a {
+  font-family: var(--sans); font-size: .95rem; letter-spacing: .04em;
+  padding: .9rem 2rem; border: 1px solid var(--line); border-radius: 999px; color: var(--text);
+}
+.gate .choices a:hover { border-color: var(--earth); color: var(--earth); }
+
+/* ---------- Nazik giriş animasyonu (tek, yumuşak) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .fade { opacity: 0; transform: translateY(12px); animation: rise .9s ease forwards; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+}
+
+/* ---------- Küçük ekran ayarları ---------- */
+@media (max-width: 640px) {
+  .nav-links { display: none; }  /* mobilde sade; ileride menü düğmesi eklenir */
+  body { font-size: 1.06rem; }
+}

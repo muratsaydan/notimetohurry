@@ -3,75 +3,80 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Writing — No Time to Hurry</title>
+  <title>Journal — No Time to Hurry</title>
+  <meta name="description" content="Pieces from the field journal. Deep subjects, plain language, and a cartoon inside every one.">
   <link rel="alternate" hreflang="tr" href="../../tr/makaleler/index.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..500;1,9..144,300..400&family=Newsreader:ital,wght@0,300..500;1,300..400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../css/main.css">
 </head>
 <body>
 
   <header class="site-header">
     <nav aria-label="Main menu">
-      <a href="../index.html" class="nav-logo"><span>No Time to Hurry</span></a>
+      <a href="../index.html" class="nav-logo">No Time to Hurry</a>
       <div class="nav-right">
         <ul class="nav-links">
-          <li><a href="../index.html">Home</a></li>
-          <li><a href="../about.html">About</a></li>
-          <li><a href="../slow-living.html">Slow living</a></li>
-          <li><a href="../conversations.html">Conversations</a></li>
-          <li><a href="index.html">Writing</a></li>
-          <li><a href="../rivea.html">Rivea Beauty</a></li>
+          <li><a href="../index.html">start</a></li>
+          <li><a href="../slow-living.html">slow living</a></li>
+          <li><a href="index.html">journal</a></li>
+          <li><a href="../about.html">about</a></li>
+          <li><a href="../rivea.html">rivea</a></li>
         </ul>
         <p class="nav-lang"><a href="../../tr/makaleler/index.html" hreflang="tr">TR</a></p>
       </div>
     </nav>
   </header>
 
-  <div class="page-stack">
-    <div class="page-middle">
-  <main class="content-page">
-    <h1 class="page-title reveal">Writing</h1>
-    <p class="page-lead reveal">
-      Short pieces will be listed here. Add one HTML file per essay under this folder and link it from this page.
-    </p>
+  <main>
+    <section class="hero" style="padding-block: clamp(3rem,8vw,6rem) 1rem;">
+      <div class="column fade">
+        <p class="eyebrow">Journal</p>
+        <h1>The field journal</h1>
+        <p class="lead">Deep subjects, plain language. And somewhere in every piece, a
+          cartoon that lets the topic breathe. Feel free to look only at those.</p>
+      </div>
+    </section>
 
-    <ul class="article-list reveal" aria-label="Article list">
-    </ul>
-    <p class="empty-hint reveal">Nothing published yet. This list will grow when the first piece goes up.</p>
+    <section style="padding-top:1rem;">
+      <div class="column">
+        <a href="remembering-to-breathe.html" class="feature">
+          <span class="kicker">First piece</span>
+          <h3>Remembering How to Breathe in a World Doing a Billion Operations a Second</h3>
+          <p>What happens when someone who makes a living from technology realises he can't
+            keep up with the pace of AI? Confessions of a dinosaur in a footrace against
+            fibre-optic cables — and the art of pulling the machine's plug.</p>
+          <span class="more">Read →</span>
+        </a>
+
+        <p class="muted" style="text-align:center; margin-top:3rem; font-style:italic;">
+          Only one note in the journal so far. No hurry, you know.
+        </p>
+      </div>
+    </section>
   </main>
 
+  <footer class="site-footer">
+    <div class="wrap">
+      <div>
+        <p class="footer-brand">No Time to Hurry</p>
+        <p class="muted" style="margin-top:.5rem; max-width:24rem;">
+          A simple but deep field journal on slow living.
+        </p>
+      </div>
+      <ul class="footer-links">
+        <li><a href="../slow-living.html">What is slow living?</a></li>
+        <li><a href="index.html">Journal</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../rivea.html">Rivea Beauty</a></li>
+        <li><a href="../../tr/index.html">Türkçe</a></li>
+      </ul>
     </div>
-
-  <footer>
-    <div>
-      <div class="footer-logo"><em>Nâgihan</em><span class="footer-tagline">No Time to Hurry</span></div>
-      <p class="footer-copy">© 2026</p>
+    <div class="wrap" style="margin-top:2rem;">
+      <p class="muted" style="font-size:.82rem;">© 2026 No Time to Hurry · notimetohurry.com</p>
     </div>
-    <ul class="footer-links">
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="../about.html">About</a></li>
-      <li><a href="https://www.instagram.com/hicbiryereyetismeyenlerkulubu/">Instagram</a></li>
-      <li><a href="https://riveabeauty.com">Rivea Beauty</a></li>
-    </ul>
-    <p class="footer-copy"><a class="dil-secimi" href="../../choose-language.html">Choose language</a></p>
   </footer>
-  </div>
 
-  <script>
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-    reveals.forEach(el => observer.observe(el));
-    const nav = document.querySelector('.site-header');
-    window.addEventListener('scroll', () => {
-      if (!nav) return;
-      nav.style.boxShadow = window.scrollY > 40 ? '0 1px 0 rgba(139, 115, 85, 0.12)' : '0 1px 0 rgba(92, 74, 50, 0.06)';
-    });
-  </script>
 </body>
 </html>

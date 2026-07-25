@@ -47,7 +47,7 @@ jobs:
           DEST="${DEPLOY_USER}@${DEPLOY_HOST}:/var/www/notimetohurry.com/"
           rsync -avz --delete \
             ./css ./en ./tr ./assets \
-            ./index.html ./choose-language.html \
+            ./index.html \
             "$DEST"
 
       - name: Fix directory permissions for nginx

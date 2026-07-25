@@ -5,3 +5,9 @@ Thumbs.db
 
 # Kök .env yalnızca secrets.env'den türetilir; repoya girmez
 .env
+
+# n8n yerel dökümleri ve sorguları — repoya girmez (hassas)
+deploy/n8n-credentials-list.json
+deploy/n8n-query-*.sql
+deploy/.put-out.json
+deploy/n8n-wf-current.json

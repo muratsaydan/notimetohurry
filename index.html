@@ -3,36 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>notimetohurry.com</title>
-  <meta name="description" content="No Time to Hurry — yönlendiriliyor.">
-  <script>
-    (function () {
-      var q = window.location.search || '';
-      if (q.indexOf('lang=tr') !== -1) { window.location.replace('tr/index.html'); return; }
-      if (q.indexOf('lang=en') !== -1) { window.location.replace('en/index.html'); return; }
-      var list = navigator.languages && navigator.languages.length
-        ? navigator.languages
-        : [navigator.language || 'en'];
-      var tr = false;
-      for (var i = 0; i < list.length; i++) {
-        var code = (list[i] || '').toLowerCase();
-        if (code.indexOf('tr') === 0) { tr = true; break; }
-      }
-      window.location.replace(tr ? 'tr/index.html' : 'en/index.html');
-    })();
-  </script>
-  <link rel="stylesheet" href="css/main.css">
+  <title>Hiçbir Yere Yetişmeyenler Kulübü — No Time to Hurry</title>
+  <meta name="description" content="Yavaş yaşam felsefesi üzerine sade ama derin bir seyir defteri.">
+  <link rel="canonical" href="tr/index.html">
+  <meta http-equiv="refresh" content="0; url=tr/index.html">
+  <script>location.replace("tr/index.html");</script>
 </head>
-<body class="redirect-body">
-  <p class="redirect-msg">Yönlendiriliyorsunuz…</p>
-  <noscript>
-    <div class="gateway-card" style="margin: 2rem auto;">
-      <p class="gateway-note">JavaScript kapalıysa dil seçin:</p>
-      <nav class="gateway-links">
-        <a href="tr/index.html">Türkçe</a>
-        <a href="en/index.html" class="secondary">English</a>
-      </nav>
-    </div>
-  </noscript>
+<body>
+  <p style="font-family:system-ui,sans-serif;color:#6b6153;padding:2rem;">
+    Yönlendiriliyorsunuz… Otomatik açılmazsa <a href="tr/index.html">buraya tıklayın</a>.
+    <br>Redirecting… If nothing happens, <a href="tr/index.html">click here</a>.
+  </p>
 </body>
 </html>

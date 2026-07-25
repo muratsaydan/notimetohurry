@@ -7,17 +7,48 @@
       "name": "When clicking 'Test workflow'",
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
-      "position": [-380, 0]
+      "position": [
+        -900,
+        -140
+      ]
     },
     {
       "parameters": {
-        "jsCode": "return [\n  { json: { feed: 'Zen Habits', url: 'https://feeds.feedburner.com/zenhabits' } },\n  { json: { feed: 'Slow Living Collective', url: 'https://theslowlivingcollective.substack.com/feed' } },\n  { json: { feed: 'Google News (EN)', url: 'https://news.google.com/rss/search?q=slow+living&hl=en&gl=US&ceid=US:en' } }\n];"
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "weeksInterval": 1,
+              "triggerAtDay": [
+                1
+              ],
+              "triggerAtHour": 8,
+              "triggerAtMinute": 0
+            }
+          ]
+        }
+      },
+      "id": "b7777777-7777-7777-7777-777777777777",
+      "name": "Her Pazartesi 08:00",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -900,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  { json: { feed: 'Slow Living Collective', url: 'https://theslowlivingcollective.substack.com/feed' } },\n  { json: { feed: 'Google News (EN)', url: 'https://news.google.com/rss/search?q=slow+living&hl=en&gl=US&ceid=US:en' } }\n];"
       },
       "id": "22222222-2222-2222-2222-222222222222",
       "name": "Feed URLs",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [-140, 0]
+      "position": [
+        -620,
+        0
+      ]
     },
     {
       "parameters": {
@@ -28,43 +59,308 @@
       "name": "RSS Read",
       "type": "n8n-nodes-base.rssFeedRead",
       "typeVersion": 1.2,
-      "position": [120, 0]
+      "position": [
+        -380,
+        0
+      ]
     },
     {
       "parameters": {
-        "jsCode": "function guessFeed(link) {\n  const u = String(link);\n  if (u.includes('feedburner') || u.includes('zenhabits')) return 'Zen Habits';\n  if (u.includes('substack.com')) return 'Slow Living Collective';\n  if (u.includes('news.google.com')) return 'Google News (EN)';\n  return 'Diğer';\n}\nconst seen = new Set();\nconst out = [];\nfor (const item of $input.all()) {\n  const j = item.json;\n  const link = (j.link || j.guid || '').toString();\n  if (!link || seen.has(link)) continue;\n  seen.add(link);\n  out.push({\n    json: {\n      feed: guessFeed(link),\n      title: j.title || '(başlıksız)',\n      link,\n      pubDate: j.pubDate || j.isoDate || '',\n    },\n  });\n}\nreturn out;"
+        "jsCode": "function guessFeed(link) {\n  const u = String(link);\n  if (u.includes('substack.com')) return 'Slow Living Collective';\n  if (u.includes('news.google.com')) return 'Google News (EN)';\n  return 'Diğer';\n}\n\nfunction stripHtml(html) {\n  return String(html || '')\n    .replace(/<script[\\s\\S]*?<\\/script>/gi, ' ')\n    .replace(/<style[\\s\\S]*?<\\/style>/gi, ' ')\n    .replace(/<[^>]+>/g, ' ')\n    .replace(/\\s+/g, ' ')\n    .trim();\n}\n\nconst WEEK_MS = 7 * 24 * 60 * 60 * 1000;\nconst cutoff = Date.now() - WEEK_MS;\n\nfunction pubMs(j) {\n  const raw = j.pubDate || j.isoDate || '';\n  const t = new Date(raw).getTime();\n  return Number.isNaN(t) ? null : t;\n}\n\nconst seen = new Set();\nconst out = [];\nfor (const item of $input.all()) {\n  const j = item.json;\n  const link = (j.link || j.guid || '').toString();\n  if (!link || seen.has(link)) continue;\n  const ms = pubMs(j);\n  if (ms == null || ms < cutoff) continue;\n  seen.add(link);\n\n  const desc =\n    j.content ||\n    j['content:encoded'] ||\n    j.description ||\n    j.contentSnippet ||\n    j.summary ||\n    '';\n  let snippet = stripHtml(desc);\n  if (!snippet) snippet = stripHtml(String(j.title || ''));\n  if (snippet.length > 2800) snippet = snippet.slice(0, 2800) + '…';\n\n  out.push({\n    json: {\n      feed: guessFeed(link),\n      title: j.title || '(başlıksız)',\n      link,\n      pubDate: j.pubDate || j.isoDate || '',\n      snippet,\n    },\n  });\n}\n\nif (!out.length) {\n  return [{ json: { emptyWeek: true } }];\n}\nreturn out;"
       },
       "id": "44444444-4444-4444-4444-444444444444",
       "name": "Dedupe by link",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [380, 0]
+      "position": [
+        -140,
+        0
+      ]
     },
     {
       "parameters": {
-        "jsCode": "const rows = $input.all().map((i, idx) => {\n  const r = i.json;\n  const title = String(r.title || '').replace(/</g, '&lt;').replace(/&/g, '&amp;');\n  const feed = String(r.feed || '').replace(/</g, '&lt;');\n  const link = String(r.link || '').replace(/\"/g, '%22');\n  return `<tr><td>${idx + 1}</td><td>${feed}</td><td>${title}</td><td><a href=\\\"${link}\\\">link</a></td><td>${r.pubDate || ''}</td></tr>`;\n}).join('\\n');\nconst html = `<!DOCTYPE html><html><head><meta charset=\\\"utf-8\\\"></head><body><h1>Slow living — özet</h1><table border=\\\"1\\\" cellpadding=\\\"6\\\"><tr><th>#</th><th>Kaynak</th><th>Başlık</th><th>Link</th><th>Tarih</th></tr>${rows}</table></body></html>`;\nreturn [{ json: { html, itemCount: $input.all().length } }];"
+        "jsCode": "const first = $input.first().json;\nif (first.emptyWeek === true) {\n  return [{ json: { emptyWeek: true, hasArticles: false } }];\n}\n\nconst articles = $input.all().map((i) => ({\n  link: i.json.link,\n  title: i.json.title,\n  feed: i.json.feed,\n  snippet: i.json.snippet || '',\n}));\n\nconst userPrompt =\n  'Görev: Aşağıdaki haber öğelerinin her biri için 2-4 cümlelik akıcı Türkçe özet yaz. Çıktı YALNIZCA tek bir JSON nesnesi olsun (markdown veya kod çiti yok, ek açıklama yok). Şema: {\"summaries\":[{\"link\":\"<girdideki URL ile birebir aynı>\",\"summary\":\"<Türkçe özet metni>\"}]} . Türkçe harfleri doğru kullan (ş, ğ, ü, ö, ç, ı, İ vb.). Her link girdide tam olarak bir kez yer almalı.\\n\\nVERİ (JSON):\\n' +\n  JSON.stringify(articles);\n\nreturn [{ json: { hasArticles: true, userPrompt, articlesForApply: articles } }];"
+      },
+      "id": "c8888888-8888-8888-8888-888888888888",
+      "name": "Prepare LLM prompt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        100,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "has-art",
+              "leftValue": "={{ $json.hasArticles }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "fbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
+      "name": "Has articles?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        340,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.userPrompt }}",
+        "hasOutputParser": false,
+        "messages": {
+          "messageValues": [
+            {
+              "type": "SystemMessagePromptTemplate",
+              "message": "You only output a single compact JSON object as specified by the user. No markdown, no prose before or after the JSON. Preserve exact article URLs from the input. Turkish summaries must use correct Turkish letters."
+            }
+          ]
+        }
+      },
+      "id": "d9999999-9999-9999-9999-999999999999",
+      "name": "Vertex özet",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        580,
+        -120
+      ]
+    },
+    {
+      "parameters": {
+        "projectId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "YOUR_GCP_PROJECT_ID"
+        },
+        "modelName": "gemini-2.0-flash",
+        "options": {
+          "maxOutputTokens": 8192,
+          "temperature": 0.35
+        }
+      },
+      "id": "f0f0f0f0-f0f0-f0f0-f0f0-f0f0f0f0f0f0",
+      "name": "Google Vertex Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleVertex",
+      "typeVersion": 1,
+      "position": [
+        580,
+        140
+      ],
+      "credentials": {
+        "googleApi": {
+          "id": "12zhGuGbShbTIU7v",
+          "name": "Google Service Account account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const deduped = $('Dedupe by link').all();\nconst firstIn = $input.first().json;\n\nfunction geminiResponseText(j) {\n  const parts = j.content?.parts;\n  if (Array.isArray(parts)) {\n    const s = parts.map((p) => p.text).filter(Boolean).join('');\n    if (s) return s;\n  }\n  if (typeof j.mergedResponse === 'string' && j.mergedResponse) return j.mergedResponse;\n  return '';\n}\n\nlet text = typeof firstIn.text === 'string' ? firstIn.text.trim() : '';\nif (!text) text = geminiResponseText(firstIn);\nif (!text) {\n  text =\n    firstIn.body?.choices?.[0]?.message?.content ||\n    firstIn.choices?.[0]?.message?.content ||\n    firstIn.data?.[0]?.message?.content ||\n    firstIn.message?.content ||\n    '';\n}\n\nfunction extractJson(s) {\n  const t = String(s).trim();\n  const start = t.indexOf('{');\n  const end = t.lastIndexOf('}');\n  if (start === -1 || end === -1 || end <= start) throw new Error('no_json');\n  return JSON.parse(t.slice(start, end + 1));\n}\n\nlet summaries = [];\ntry {\n  const parsed = extractJson(text);\n  summaries = Array.isArray(parsed.summaries) ? parsed.summaries : [];\n} catch (e) {\n  summaries = [];\n}\n\nfunction decodeSummaryB64(x) {\n  if (typeof Buffer === 'undefined') return '';\n  const b64raw = (x.summary_b64 || x.summaryB64 || '').toString().replace(/\\s/g, '');\n  if (!b64raw) return '';\n  let b64 = b64raw.replace(/-/g, '+').replace(/_/g, '/');\n  const m = b64.length % 4;\n  if (m === 1) return '';\n  if (m) b64 += '='.repeat(4 - m);\n  try {\n    const dec = Buffer.from(b64, 'base64').toString('utf8');\n    return dec || '';\n  } catch (e) {\n    return '';\n  }\n}\n\nfunction fixLatin1MisreadUtf8(s) {\n  if (!s || typeof Buffer === 'undefined') return s;\n  try {\n    const t = Buffer.from(s, 'latin1').toString('utf8');\n    const cjk = /[\\u4e00-\\u9fff]/.test(t);\n    const tr = /[şğıöüçıŞĞİÖÜÇ]/.test(t);\n    if (tr && !cjk) return t;\n  } catch (e2) {}\n  return s;\n}\n\nfunction pickSummary(x) {\n  const fromB64 = decodeSummaryB64(x);\n  if (fromB64) return fromB64;\n  const plain = String(x.summary || '').trim();\n  return plain ? fixLatin1MisreadUtf8(plain) : '';\n}\n\nconst byLink = new Map(summaries.map((x) => [String(x.link || ''), pickSummary(x)]));\n\nreturn deduped.map((item) => {\n  const link = String(item.json.link || '');\n  const sum = byLink.get(link) || '';\n  return {\n    json: {\n      ...item.json,\n      summaryTr:\n        sum ||\n        'Özet üretilemedi; yine de başlık ve RSS alıntısından genel fikir edinebilirsiniz.',\n    },\n  };\n});"
+      },
+      "id": "eaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+      "name": "Apply Turkish summaries",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        820,
+        -120
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "function escapeHtml(s) {\n  return String(s ?? '')\n    .replace(/&/g, '&amp;')\n    .replace(/</g, '&lt;')\n    .replace(/>/g, '&gt;')\n    .replace(/\"/g, '&quot;');\n}\n\nfunction formatDate(raw) {\n  const s = String(raw || '').trim();\n  if (!s) return '—';\n  const d = new Date(s);\n  if (Number.isNaN(d.getTime())) return escapeHtml(s);\n  return d.toLocaleString('tr-TR', {\n    day: '2-digit',\n    month: '2-digit',\n    year: 'numeric',\n    hour: '2-digit',\n    minute: '2-digit',\n  });\n}\n\nconst items = $input.all();\nconst first = items[0]?.json;\n\nif (first?.emptyWeek === true) {\n  const generated = new Date().toLocaleString('tr-TR', {\n    day: '2-digit',\n    month: 'long',\n    year: 'numeric',\n    hour: '2-digit',\n    minute: '2-digit',\n  });\n  const html =\n    '\\ufeff<!DOCTYPE html><html lang=\"tr\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta charset=\"utf-8\"></head><body style=\"margin:0;padding:24px;background:#f4f4f5;font-family:Segoe UI,Roboto,Helvetica,Arial,sans-serif;\">' +\n    '<table role=\"presentation\" width=\"100%\"><tr><td align=\"center\">' +\n    '<table role=\"presentation\" style=\"max-width:560px;background:#fff;border-radius:12px;padding:28px;text-align:left;\">' +\n    '<tr><td><p style=\"margin:0 0 12px;font-size:13px;color:#1a4d3a;font-weight:600;\">Slow Living Radar</p>' +\n    '<h1 style=\"margin:0 0 10px;font-size:20px;color:#111;\">Bu hafta özetlenecek yeni içerik yok</h1>' +\n    '<p style=\"margin:0;font-size:14px;line-height:1.55;color:#444;\">Son <strong>7 gün</strong> içinde yayınlanmış ve RSS’te geçerli tarih bilgisi olan madde bulunamadı. Bir sonraki haftalık çalıştırmada tekrar denenecek.</p>' +\n    '<p style=\"margin:16px 0 0;font-size:12px;color:#888;\">' +\n    escapeHtml(generated) +\n    '</p></td></tr></table></td></tr></table></body></html>';\n  return [{ json: { html, itemCount: 0 } }];\n}\n\nconst rows = items\n  .map((i, idx) => {\n    const r = i.json;\n    const title = escapeHtml(r.title || '(başlıksız)');\n    const feed = escapeHtml(r.feed || '');\n    const link = String(r.link || '');\n    const href = escapeHtml(link);\n    const when = formatDate(r.pubDate);\n    const sum = escapeHtml(r.summaryTr || '');\n    const num = idx + 1;\n    return (\n      '<tr>' +\n      '<td style=\"padding:12px 10px;border-bottom:1px solid #e8e8e8;color:#666;font-size:13px;width:36px;vertical-align:top;\">' +\n      num +\n      '</td>' +\n      '<td style=\"padding:12px 10px;border-bottom:1px solid #e8e8e8;font-size:13px;color:#333;font-weight:600;vertical-align:top;\">' +\n      feed +\n      '</td>' +\n      '<td style=\"padding:12px 10px;border-bottom:1px solid #e8e8e8;font-size:15px;line-height:1.45;color:#111;vertical-align:top;\">' +\n      title +\n      '</td>' +\n      '<td style=\"padding:12px 10px;border-bottom:1px solid #e8e8e8;font-size:13px;white-space:nowrap;vertical-align:top;\">' +\n      '<a href=\"' +\n      href +\n      '\" style=\"color:#0b57d0;text-decoration:none;font-weight:600;\">Oku →</a>' +\n      '</td>' +\n      '<td style=\"padding:12px 10px;border-bottom:1px solid #e8e8e8;font-size:12px;color:#666;vertical-align:top;\">' +\n      when +\n      '</td>' +\n      '</tr>' +\n      '<tr><td colspan=\"5\" style=\"padding:4px 12px 18px 44px;border-bottom:1px solid #ddd;font-size:13px;line-height:1.55;color:#333;background:#fafafa;\">' +\n      '<strong style=\"color:#1a4d3a;\">Özet</strong><br>' +\n      sum +\n      '</td></tr>'\n    );\n  })\n  .join('\\n');\n\nconst count = items.length;\nconst generated = new Date().toLocaleString('tr-TR', {\n  day: '2-digit',\n  month: 'long',\n  year: 'numeric',\n  hour: '2-digit',\n  minute: '2-digit',\n});\n\nconst html =\n  '\\ufeff<!DOCTYPE html>' +\n  '<html lang=\"tr\">' +\n  '<head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">' +\n  '<title>Haftalık slow living özeti</title></head>' +\n  '<body style=\"margin:0;padding:0;background:#f4f4f5;font-family:Segoe UI,Roboto,Helvetica,Arial,sans-serif;\">' +\n  '<table role=\"presentation\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" style=\"background:#f4f4f5;padding:24px 12px;\">' +\n  '<tr><td align=\"center\">' +\n  '<table role=\"presentation\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" style=\"max-width:640px;background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06);\">' +\n  '<tr><td style=\"padding:22px 24px;background:#1a4d3a;color:#fff;\">' +\n  '<p style=\"margin:0;font-size:12px;opacity:0.9;letter-spacing:0.04em;text-transform:uppercase;\">Slow Living Radar</p>' +\n  '<h1 style=\"margin:6px 0 0;font-size:22px;font-weight:600;line-height:1.25;\">Haftalık sakin yaşam özeti</h1>' +\n  '<p style=\"margin:8px 0 0;font-size:13px;opacity:0.92;\">' +\n  generated +\n  ' · son <strong>7 gün</strong>de yayınlanan <strong>' +\n  count +\n  '</strong> içerik · Türkçe özetler Google Vertex AI (Gemini) ile üretildi</p>' +\n  '</td></tr>' +\n  '<tr><td style=\"padding:18px 24px 8px;\">' +\n  '<p style=\"margin:0 0 14px;font-size:14px;color:#444;line-height:1.5;\">Merhaba,<br>' +\n  'Aşağıdaki liste yalnızca <strong>son 7 gün</strong> içinde RSS’te görünen yayınları içerir. Her satırın altında, başlık ve akıştaki kısa alıntıya dayanan bir <strong>Türkçe özet</strong> bulunur; ayrıntı için bağlantıyı kullanabilirsiniz.</p>' +\n  '</td></tr>' +\n  '<tr><td style=\"padding:0 8px 20px;\">' +\n  '<table role=\"presentation\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" style=\"border-collapse:collapse;\">' +\n  '<tr>' +\n  '<th align=\"left\" style=\"padding:10px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#888;border-bottom:2px solid #e0e0e0;\">#</th>' +\n  '<th align=\"left\" style=\"padding:10px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#888;border-bottom:2px solid #e0e0e0;\">Kaynak</th>' +\n  '<th align=\"left\" style=\"padding:10px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#888;border-bottom:2px solid #e0e0e0;\">Başlık</th>' +\n  '<th align=\"left\" style=\"padding:10px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#888;border-bottom:2px solid #e0e0e0;\">Bağlantı</th>' +\n  '<th align=\"left\" style=\"padding:10px;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#888;border-bottom:2px solid #e0e0e0;\">Yayın</th>' +\n  '</tr>' +\n  rows +\n  '</table></td></tr>' +\n  '<tr><td style=\"padding:16px 24px 22px;background:#fafafa;border-top:1px solid #eee;\">' +\n  '<p style=\"margin:0;font-size:12px;color:#777;line-height:1.5;\">Kaynaklar: Slow Living Collective (Substack), Google News RSS. Zen Habits kaldırıldı (eski tarihli içerik). Zamanlama: her Pazartesi 08:00 (n8n workflow aktifken).</p>' +\n  '</td></tr></table></td></tr></table></body></html>';\n\nreturn [{ json: { html, itemCount: count } }];"
       },
       "id": "55555555-5555-5555-5555-555555555555",
       "name": "Build HTML",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [640, 0]
+      "position": [
+        1060,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "message",
+        "operation": "send",
+        "sendTo": "murat@saydan.net",
+        "subject": "=Haftalık sakin yaşam özeti — {{ $now.format('dd.MM.yyyy HH:mm') }}",
+        "emailType": "html",
+        "message": "={{ $json.html }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "a6666666-6666-6666-6666-666666666666",
+      "name": "Gmail — murat@saydan.net",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1300,
+        0
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "UkYlKBD8YnedtYKQ",
+          "name": "Gmail account"
+        }
+      }
     }
   ],
   "connections": {
     "When clicking 'Test workflow'": {
-      "main": [[{ "node": "Feed URLs", "type": "main", "index": 0 }]]
+      "main": [
+        [
+          {
+            "node": "Feed URLs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Her Pazartesi 08:00": {
+      "main": [
+        [
+          {
+            "node": "Feed URLs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     },
     "Feed URLs": {
-      "main": [[{ "node": "RSS Read", "type": "main", "index": 0 }]]
+      "main": [
+        [
+          {
+            "node": "RSS Read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     },
     "RSS Read": {
-      "main": [[{ "node": "Dedupe by link", "type": "main", "index": 0 }]]
+      "main": [
+        [
+          {
+            "node": "Dedupe by link",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     },
     "Dedupe by link": {
-      "main": [[{ "node": "Build HTML", "type": "main", "index": 0 }]]
+      "main": [
+        [
+          {
+            "node": "Prepare LLM prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare LLM prompt": {
+      "main": [
+        [
+          {
+            "node": "Has articles?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has articles?": {
+      "main": [
+        [
+          {
+            "node": "Vertex özet",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Build HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Vertex Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Vertex özet",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vertex özet": {
+      "main": [
+        [
+          {
+            "node": "Apply Turkish summaries",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Apply Turkish summaries": {
+      "main": [
+        [
+          {
+            "node": "Build HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build HTML": {
+      "main": [
+        [
+          {
+            "node": "Gmail — murat@saydan.net",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
-  "settings": { "executionOrder": "v1" },
+  "settings": {
+    "executionOrder": "v1"
+  },
   "staticData": null
 }
