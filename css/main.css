@@ -100,6 +100,16 @@ section { padding-block: var(--gap); }
 .hero h1 em { font-style: italic; color: var(--earth); }
 .lead { font-size: clamp(1.2rem, 2.4vw, 1.4rem); color: var(--text-soft); max-width: 32rem; margin: 0 0 2rem; }
 
+/* ---------- Hero görseli (tam genişlik bant) ---------- */
+.hero-banner { margin: 0; line-height: 0; border-bottom: 1px solid var(--line-soft); }
+.hero-banner img { display: block; width: 100%; height: auto; }
+
+/* ---------- Sayfalara serpiştirilen renkli karikatürler ---------- */
+figure.cartoon { margin: 3.5rem auto; }
+figure.cartoon img { display: block; width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--line-soft); }
+figure.cartoon figcaption { font-family: var(--sans); font-size: .8rem; color: var(--text-soft); margin-top: .75rem; text-align: center; letter-spacing: .02em; }
+.prose figure.cartoon { max-width: 46rem; }
+
 /* ---------- Tipografik ritim ---------- */
 h2 { font-size: clamp(1.9rem, 4.5vw, 2.9rem); margin: 0 0 1.25rem; }
 h3 { font-size: 1.4rem; margin: 0 0 .6rem; }

@@ -11,3 +11,6 @@ deploy/n8n-credentials-list.json
 deploy/n8n-query-*.sql
 deploy/.put-out.json
 deploy/n8n-wf-current.json
+
+# Yüksek çözünürlüklü görsel kaynakları (deploy/repo dışı)
+kaynaklar/
