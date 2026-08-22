@@ -18,10 +18,11 @@ aynı el, aynı doku çıksın.
 Site birinci şahıs (Murat). Gırgır geleneğindeki köşe avatarı gibi, her yazıda belirebilen
 tekrar eden bir karakter var: **Murat'ın sıcak/güler yüzlü karikatürü.**
 
-- Kilitli avatar: [`assets/karakter/anlatici-avatar.png`](assets/karakter/anlatici-avatar.png)
-  (seçilen versiyon: sakin-sıcak "A").
-- Kimlik, referans fotoğraftan **fal.ai FLUX-PuLID** ile korunur. Referans fotoğraf **repoya
-  konmaz** (özel); üretim anında yerel bir yoldan verilir.
+- **Güncel avatar:** [`assets/karakter/avatar.jpg`](assets/karakter/avatar.jpg) — renkli
+  nano banana illüstrasyonu (yeşil tişört, kendi odası); Murat'a benzeyen sıcak hâl.
+  **Bundan sonra hep bu kullanılır.** (Eski Gırgır siyah-beyaz PuLID büstü emekliye ayrıldı.)
+- Görsel üretimi artık Murat'ta (nano banana / Gemini); Claude görselleri siteye
+  yerleştirir, web'e optimize eder ve düzeni kurar.
 
 ## 3. Üretim boru hattı (fal.ai)
 

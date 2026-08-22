@@ -25,7 +25,7 @@
   --sans:          system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
   /* Ölçü */
-  --measure: 34rem;        /* dar okuma sütunu (~65-70 karakter) */
+  --measure: 64rem;        /* okuma sütunu = navbar genişliği (--wide ile aynı) */
   --wide:    64rem;        /* geniş bölüm sınırı */
   --gap:     clamp(3.5rem, 8vw, 7rem);  /* bölümler arası nefes */
 }
@@ -94,15 +94,15 @@ section { padding-block: var(--gap); }
   text-transform: uppercase; color: var(--earth); margin: 0 0 1.5rem;
 }
 .hero h1 {
-  font-size: clamp(2.6rem, 8vw, 5rem);
+  font-size: clamp(2.1rem, 6vw, 3.7rem);
   margin: 0 0 1.5rem; letter-spacing: -0.01em;
 }
 .hero h1 em { font-style: italic; color: var(--earth); }
 .lead { font-size: clamp(1.2rem, 2.4vw, 1.4rem); color: var(--text-soft); max-width: 32rem; margin: 0 0 2rem; }
 
 /* ---------- Hero görseli (tam genişlik bant) ---------- */
-.hero-banner { margin: 0; line-height: 0; border-bottom: 1px solid var(--line-soft); }
-.hero-banner img { display: block; width: 100%; height: auto; }
+.hero-banner { margin: 2rem auto 0; max-width: 46rem; padding-inline: clamp(1.25rem, 5vw, 2.5rem); line-height: 0; }
+.hero-banner img { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line-soft); }
 
 /* ---------- Sayfalara serpiştirilen renkli karikatürler ---------- */
 figure.cartoon { margin: 3.5rem auto; }
@@ -111,7 +111,7 @@ figure.cartoon figcaption { font-family: var(--sans); font-size: .8rem; color: v
 .prose figure.cartoon { max-width: 46rem; }
 
 /* ---------- Tipografik ritim ---------- */
-h2 { font-size: clamp(1.9rem, 4.5vw, 2.9rem); margin: 0 0 1.25rem; }
+h2 { font-size: clamp(1.55rem, 3.6vw, 2.2rem); margin: 0 0 1.25rem; }
 h3 { font-size: 1.4rem; margin: 0 0 .6rem; }
 p  { margin: 0 0 1.4rem; }
 .muted { color: var(--text-soft); }
