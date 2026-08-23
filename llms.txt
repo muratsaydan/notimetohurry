@@ -1,0 +1,31 @@
+# No Time to Hurry (Hiçbir Yere Yetişmeyenler Kulübü)
+
+> A first-person field journal and small "club" by Murat Saydan that researches, tries out and
+> honestly questions the philosophy of slow living: how to keep your own rhythm in the middle of
+> work, the city and technology, without fleeing to the countryside. Bilingual (Turkish / English).
+> No products for sale, no membership, no political aim and no hidden agenda — just one person
+> recording his own "graph of change" as he learns to slow down.
+
+## What "slow living" means here
+Slow living is not doing everything slowly, and not escaping to a village. It is deciding for
+yourself what to do and how fast — being a user of speed, not its captive. The site presents this
+plainly: what slow living is, what it is not, who lives this way (slow food, slow fashion, digital
+minimalism), whether it is sustainable (the Cittaslow / "slow city" movement, with its
+gentrification and over-tourism contradictions), and the author's own honest, undecided stance.
+
+## Core pages (English)
+- [What is slow living?](https://notimetohurry.com/en/slow-living.html): The concept in plain language; the opposite of speed isn't slowness but connection (Hartmut Rosa).
+- [Journal](https://notimetohurry.com/en/articles/index.html): Essays and field notes; each carries a cartoon.
+- [Remembering How to Breathe in a World Doing a Billion Operations a Second](https://notimetohurry.com/en/articles/remembering-to-breathe.html): First piece — a technologist who can't keep up with AI; machine-speed vs. human-speed; from Seneca to Ivan Illich to Rosa.
+- [About](https://notimetohurry.com/en/about.html): Murat Saydan — 27 years in IT (banking, ~20 years of logistics-sector ERP, then e-commerce and Rivea Beauty), now learning to slow down.
+
+## Ana sayfalar (Türkçe)
+- [Sakin yaşam nedir?](https://notimetohurry.com/tr/sakin-yasam.html)
+- [Yazılar](https://notimetohurry.com/tr/makaleler/index.html)
+- [Nefes Almayı Hatırlamak](https://notimetohurry.com/tr/makaleler/nefes-almayi-hatirlamak.html)
+- [Hakkımda](https://notimetohurry.com/tr/hakkinda.html)
+
+## Author
+- Murat Saydan — software developer and entrepreneur based in Mersin, Turkey. METU (ODTÜ)
+  Statistics, 1995. Career site and free tools: https://saydan.net —
+  LinkedIn: https://www.linkedin.com/in/murat-saydan-57619b3
