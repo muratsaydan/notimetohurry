@@ -65,6 +65,38 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://notimetohurry.com/tr/makaleler/stoacilar.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://notimetohurry.com/tr/makaleler/stoacilar.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://notimetohurry.com/en/articles/first-stop-the-stoics.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://notimetohurry.com/tr/makaleler/stoacilar.html"/>
+    <lastmod>2026-08-23</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://notimetohurry.com/en/articles/first-stop-the-stoics.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://notimetohurry.com/tr/makaleler/stoacilar.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://notimetohurry.com/en/articles/first-stop-the-stoics.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://notimetohurry.com/tr/makaleler/stoacilar.html"/>
+    <lastmod>2026-08-23</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://notimetohurry.com/tr/makaleler/sakin-yasamin-dogusu.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://notimetohurry.com/tr/makaleler/sakin-yasamin-dogusu.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://notimetohurry.com/en/articles/it-all-started-with-a-plate-of-pasta.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://notimetohurry.com/tr/makaleler/sakin-yasamin-dogusu.html"/>
+    <lastmod>2026-08-23</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://notimetohurry.com/en/articles/it-all-started-with-a-plate-of-pasta.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://notimetohurry.com/tr/makaleler/sakin-yasamin-dogusu.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://notimetohurry.com/en/articles/it-all-started-with-a-plate-of-pasta.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://notimetohurry.com/tr/makaleler/sakin-yasamin-dogusu.html"/>
+    <lastmod>2026-08-23</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://notimetohurry.com/tr/hakkinda.html</loc>
     <xhtml:link rel="alternate" hreflang="tr" href="https://notimetohurry.com/tr/hakkinda.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://notimetohurry.com/en/about.html"/>

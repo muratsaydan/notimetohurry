@@ -167,6 +167,42 @@ p  { margin: 0 0 1.4rem; }
   font-style: italic; color: var(--text-soft);
 }
 
+/* ---------- Seyir defteri oturumu (diyalog) ---------- */
+.session { max-width: var(--measure); margin-inline: auto; padding-inline: clamp(1.25rem, 5vw, 2.5rem); }
+.session .turn { margin-block: 2rem; }
+.turn .speaker {
+  display: flex; align-items: center; gap: .55rem;
+  font-family: var(--sans); font-size: .72rem; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--text-soft); margin-bottom: .7rem;
+}
+/* Murat'ın sorusu */
+.turn.ask {
+  background: var(--bg-alt); border-left: 3px solid var(--earth);
+  border-radius: 0 10px 10px 0; padding: 1.3rem 1.6rem;
+}
+.turn.ask .speaker img {
+  width: 30px; height: 30px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line);
+}
+.turn.ask p {
+  margin: 0; font-family: var(--serif-display); font-style: italic;
+  font-size: 1.18rem; line-height: 1.5; color: var(--text);
+}
+.turn.ask p + p { margin-top: .8rem; }
+/* Araştırmanın (yapay zekâ) cevabı */
+.turn.answer { padding-inline: .2rem; }
+.turn.answer .speaker { color: var(--accent-deep); }
+.turn.answer .speaker::before {
+  content: ""; width: 9px; height: 9px; border-radius: 2px;
+  background: var(--accent); transform: rotate(45deg); display: inline-block;
+}
+.turn.answer p { margin: 0 0 1rem; }
+.turn.answer p:last-child { margin-bottom: 0; }
+.turn.answer strong { font-weight: 600; color: var(--text); }
+@media (max-width: 640px) {
+  .turn.ask { padding: 1.1rem 1.15rem; }
+  .turn.ask p { font-size: 1.08rem; }
+}
+
 /* ---------- Karikatür figürü (imza unsuru) ---------- */
 figure.caricature {
   max-width: 42rem; margin: 3.5rem auto; text-align: center;
