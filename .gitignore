@@ -14,3 +14,9 @@ deploy/n8n-wf-current.json
 
 # Yüksek çözünürlüklü görsel kaynakları (deploy/repo dışı)
 kaynaklar/
+
+# Nisan 2026'dan kalma n8n çalışma dosyaları — repoya girmez
+deploy/build-slow-living-radar-workflow.mjs
+deploy/n8n-sample-wf.json
+deploy/n8n-workflow-slow-living-radar-min.json
+deploy/openapi.json

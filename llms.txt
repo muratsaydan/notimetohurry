@@ -19,6 +19,7 @@ gentrification and over-tourism contradictions), and the author's own honest, un
 - [Remembering How to Breathe in a World Doing a Billion Operations a Second](https://notimetohurry.com/en/articles/remembering-to-breathe.html): First piece — a technologist who can't keep up with AI; machine-speed vs. human-speed; from Seneca to Ivan Illich to Rosa.
 - [First Stop: The Stoics](https://notimetohurry.com/en/articles/first-stop-the-stoics.html): Second piece — a recorded research dialogue with an AI on Stoicism and slow living: the dichotomy of control, Seneca on time, plus the objections (Marx/Hegel, Aristotle, Nietzsche, Camus).
 - [It All Started with a Plate of Pasta](https://notimetohurry.com/en/articles/it-all-started-with-a-plate-of-pasta.html): Third piece — the birth of the movement: Carlo Petrini, a 1986 Rome McDonald's, the 1989 Slow Food manifesto, Cittaslow, McDonaldization, and why the emblem is a snail.
+- [The Man Whose Name Was Stolen](https://notimetohurry.com/en/articles/the-man-whose-name-was-stolen.html): Fourth piece — a recorded dialogue on Epicurus: pleasure as the absence of pain, natural vs. bottomless desires, "live unnoticed" (lathe biosas), the Garden, the quarrel with the Stoics, the Diogenes-Crates-Zeno line, how Dante and Christian polemic turned a barley-bread philosopher into a gourmet, and the AI-read Herculaneum scroll of June 2026.
 - [About](https://notimetohurry.com/en/about.html): Murat Saydan — 27 years in IT (banking, ~20 years of logistics-sector ERP, then e-commerce and Rivea Beauty), now learning to slow down.
 
 ## Ana sayfalar (Türkçe)
@@ -27,6 +28,7 @@ gentrification and over-tourism contradictions), and the author's own honest, un
 - [Nefes Almayı Hatırlamak](https://notimetohurry.com/tr/makaleler/nefes-almayi-hatirlamak.html)
 - [İlk Durak: Stoacılar](https://notimetohurry.com/tr/makaleler/stoacilar.html)
 - [Her Şey Bir Tabak Makarnayla Başladı](https://notimetohurry.com/tr/makaleler/sakin-yasamin-dogusu.html)
+- [Adı Çalınan Adam](https://notimetohurry.com/tr/makaleler/epikuros.html)
 - [Hakkımda](https://notimetohurry.com/tr/hakkinda.html)
 
 ## Author
