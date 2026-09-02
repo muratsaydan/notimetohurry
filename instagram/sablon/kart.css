@@ -1,0 +1,180 @@
+/* ============================================================
+   Hiçbir Yere Yetişmeyenler Kulübü — Instagram kart sistemi
+   1080 x 1350 (4:5). Sitenin tasarım sisteminin birebir devamı.
+   Renkler/tipografi css/main.css ile aynı; ölçüler px cinsinden
+   sabit, çünkü çıktı piksel piksel render ediliyor.
+   ============================================================ */
+
+:root {
+  --bg:        #f5f0e6;
+  --bg-alt:    #ece4d5;
+  --bg-deep:   #2c2416;
+  --text:      #2c2416;
+  --text-soft: #6b6153;
+  --text-inv:  #efe8da;
+  --accent:    #6b7c5a;
+  --accent-deep:#54633f;
+  --earth:     #8b7355;
+  --gold:      #c9a96e;
+  --line:      rgba(44, 36, 22, 0.14);
+  --line-soft: rgba(44, 36, 22, 0.08);
+
+  --serif-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --serif-body:    "Newsreader", Georgia, "Times New Roman", serif;
+  --sans:          "Inter", system-ui, "Segoe UI", Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #9a948a; }
+
+/* ---------- Kart gövdesi ---------- */
+.kart {
+  width: 1080px; height: 1350px;
+  position: relative; overflow: hidden;
+  background: var(--bg); color: var(--text);
+  font-family: var(--serif-body);
+  display: flex; flex-direction: column;
+  padding: 76px 78px 62px;
+}
+.kart + .kart { margin-top: 0; }         /* dikey istifleme: kesim çizgisi yok */
+.kart.zemin-alt  { background: var(--bg-alt); }
+.kart.zemin-koyu { background: var(--bg-deep); color: var(--text-inv); }
+.kart.zemin-koyu .eyebrow { color: var(--gold); }
+.kart.zemin-koyu .kicik,
+.kart.zemin-koyu .kaynak { color: rgba(239,232,218,.72); }
+.kart.zemin-koyu .marka,
+.kart.zemin-koyu .sayac { color: rgba(239,232,218,.6); }
+.kart.zemin-koyu .cizgi { background: rgba(201,169,110,.45); }
+
+/* ---------- Üst şerit ---------- */
+.ust { flex: 0 0 auto; }
+.eyebrow {
+  font-family: var(--sans); font-size: 27px; font-weight: 500;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--earth);
+}
+.cizgi { height: 1px; background: var(--gold); opacity: .55; margin-top: 26px; width: 96px; }
+
+/* ---------- Orta blok ---------- */
+.orta { flex: 1 1 auto; display: flex; flex-direction: column; justify-content: center; padding-block: 40px; }
+.orta.ust-hizali { justify-content: flex-start; padding-top: 64px; }
+
+h1.baslik {
+  font-family: var(--serif-display); font-weight: 400;
+  font-size: 106px; line-height: 1.06; letter-spacing: -0.015em;
+}
+h1.baslik em { font-style: italic; color: var(--earth); }
+.kart.zemin-koyu h1.baslik em { color: var(--gold); }
+h1.baslik.kucuk { font-size: 86px; line-height: 1.12; }
+h1.baslik.buyuk { font-size: 124px; line-height: 1.0; }
+
+h2.ara { font-family: var(--serif-display); font-weight: 400; font-size: 68px; line-height: 1.14; margin-bottom: 38px; }
+
+p.govde {
+  font-size: 47px; line-height: 1.55; color: var(--text);
+}
+.kart.zemin-koyu p.govde { color: var(--text-inv); }
+p.govde + p.govde { margin-top: 32px; }
+p.govde strong { font-weight: 600; }
+p.govde em { font-style: italic; color: var(--earth); }
+.kart.zemin-koyu p.govde em { color: var(--gold); }
+
+p.kicik { font-size: 36px; line-height: 1.5; color: var(--text-soft); margin-top: 38px; }
+
+/* ---------- Alıntı kartı ---------- */
+.alinti {
+  font-family: var(--serif-display); font-style: italic; font-weight: 300;
+  font-size: 94px; line-height: 1.18; letter-spacing: -0.01em;
+}
+.alinti.kucuk { font-size: 78px; }
+.kaynak {
+  font-family: var(--sans); font-size: 29px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--text-soft); margin-top: 52px;
+}
+
+/* ---------- Diyalog (sitenin .turn ask / .turn answer birebir karşılığı) ---------- */
+.tur + .tur { margin-top: 46px; }
+.tur .konusan {
+  display: flex; align-items: center; gap: 16px;
+  font-family: var(--sans); font-size: 26px; font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--text-soft);
+  margin-bottom: 22px;
+}
+.tur.soru {
+  background: var(--bg-alt); border-left: 5px solid var(--earth);
+  border-radius: 0 14px 14px 0; padding: 36px 42px;
+}
+.kart.zemin-alt .tur.soru { background: #e2d8c4; }
+.tur.soru .konusan img {
+  width: 74px; height: 74px; border-radius: 50%;
+  object-fit: cover; object-position: 50% 26%; border: 1px solid var(--line);
+}
+.tur.soru p {
+  font-family: var(--serif-display); font-style: italic; font-weight: 400;
+  font-size: 46px; line-height: 1.4;
+}
+.tur.cevap .konusan { color: var(--accent-deep); }
+.tur.cevap .konusan::before {
+  content: ""; width: 18px; height: 18px; border-radius: 4px;
+  background: var(--accent); transform: rotate(45deg); display: inline-block;
+}
+.tur.cevap p { font-size: 43px; line-height: 1.52; }
+.tur.cevap p + p { margin-top: 22px; }
+.tur.cevap strong { font-weight: 600; }
+
+/* ---------- Karikatür çerçevesi ---------- */
+.gorsel { display: flex; flex-direction: column; justify-content: center; height: 100%; }
+.gorsel img {
+  display: block; width: 100%; height: auto;
+  border-radius: 10px; border: 1px solid var(--line-soft);
+}
+.gorsel figcaption {
+  font-size: 36px; line-height: 1.45; color: var(--text-soft);
+  font-style: italic; margin-top: 36px;
+}
+.kart.zemin-koyu .gorsel figcaption { color: rgba(239,232,218,.75); }
+
+/* ---------- Alt şerit ---------- */
+.alt {
+  flex: 0 0 auto; display: flex; align-items: baseline; justify-content: space-between;
+  border-top: 1px solid var(--line); padding-top: 26px;
+}
+.kart.zemin-koyu .alt { border-top-color: rgba(239,232,218,.18); }
+.marka {
+  font-family: var(--sans); font-size: 25px; font-weight: 500;
+  letter-spacing: .14em; text-transform: lowercase; color: var(--text-soft);
+}
+.sayac { font-family: var(--sans); font-size: 25px; letter-spacing: .12em; color: var(--text-soft); }
+
+/* ---------- Kaydır oku (karusel kapak) ---------- */
+.kaydir {
+  font-family: var(--sans); font-size: 29px; letter-spacing: .14em;
+  text-transform: lowercase; color: var(--earth); margin-top: 48px;
+}
+.kart.zemin-koyu .kaydir { color: var(--gold); }
+
+/* ---------- Profil / öne çıkan kapak (kare) ---------- */
+.kare {
+  width: 1080px; height: 1080px; background: var(--bg); color: var(--text);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 40px; font-family: var(--serif-body); overflow: hidden; position: relative;
+}
+.kare.zemin-koyu { background: var(--bg-deep); color: var(--text-inv); }
+.kare .isim {
+  font-family: var(--sans); font-size: 62px; font-weight: 500;
+  letter-spacing: .22em; text-transform: uppercase;
+}
+.kare .simge { font-family: var(--serif-display); font-size: 260px; line-height: 1; color: var(--earth); }
+.kare.zemin-koyu .simge { color: var(--gold); }
+
+/* ---------- Karikatür kartı: görsel nefes alsın ---------- */
+.kart.gorsel-kart { padding-inline: 56px; }
+.kart.gorsel-kart .gorsel h2.ara { margin-bottom: 44px; }
+.kart.gorsel-kart .alt { margin-inline: 22px; }
+.kart.gorsel-kart .ust { margin-inline: 22px; }
+
+/* ---------- Kapanış bağlantısı ---------- */
+.baglanti {
+  font-family: var(--sans); font-size: 40px; font-weight: 500;
+  letter-spacing: .01em; color: var(--accent-deep); margin-top: 30px;
+}
+.kart.zemin-koyu .baglanti { color: var(--gold); }

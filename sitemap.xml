@@ -49,6 +49,70 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://notimetohurry.com/tr/radar/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://notimetohurry.com/tr/radar/index.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://notimetohurry.com/en/radar/index.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://notimetohurry.com/tr/radar/index.html"/>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://notimetohurry.com/en/radar/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://notimetohurry.com/tr/radar/index.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://notimetohurry.com/en/radar/index.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://notimetohurry.com/tr/radar/index.html"/>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://notimetohurry.com/tr/radar/portekiz-bir-yilin-maliyeti.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://notimetohurry.com/tr/radar/portekiz-bir-yilin-maliyeti.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://notimetohurry.com/en/radar/portugal-what-a-year-costs.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://notimetohurry.com/tr/radar/portekiz-bir-yilin-maliyeti.html"/>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://notimetohurry.com/en/radar/portugal-what-a-year-costs.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://notimetohurry.com/tr/radar/portekiz-bir-yilin-maliyeti.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://notimetohurry.com/en/radar/portugal-what-a-year-costs.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://notimetohurry.com/tr/radar/portekiz-bir-yilin-maliyeti.html"/>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://notimetohurry.com/tr/radar/yunanistan-akdeniz-temposu.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://notimetohurry.com/tr/radar/yunanistan-akdeniz-temposu.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://notimetohurry.com/en/radar/greece-mediterranean-downsides.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://notimetohurry.com/tr/radar/yunanistan-akdeniz-temposu.html"/>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://notimetohurry.com/en/radar/greece-mediterranean-downsides.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://notimetohurry.com/tr/radar/yunanistan-akdeniz-temposu.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://notimetohurry.com/en/radar/greece-mediterranean-downsides.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://notimetohurry.com/tr/radar/yunanistan-akdeniz-temposu.html"/>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://notimetohurry.com/tr/radar/hallmark-kasabasi.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://notimetohurry.com/tr/radar/hallmark-kasabasi.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://notimetohurry.com/en/radar/hallmark-town.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://notimetohurry.com/tr/radar/hallmark-kasabasi.html"/>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://notimetohurry.com/en/radar/hallmark-town.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://notimetohurry.com/tr/radar/hallmark-kasabasi.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://notimetohurry.com/en/radar/hallmark-town.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://notimetohurry.com/tr/radar/hallmark-kasabasi.html"/>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://notimetohurry.com/tr/makaleler/nefes-almayi-hatirlamak.html</loc>
     <xhtml:link rel="alternate" hreflang="tr" href="https://notimetohurry.com/tr/makaleler/nefes-almayi-hatirlamak.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://notimetohurry.com/en/articles/remembering-to-breathe.html"/>

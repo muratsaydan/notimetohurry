@@ -47,7 +47,7 @@ body {
 img { max-width: 100%; height: auto; display: block; }
 a { color: var(--accent-deep); text-decoration: none; }
 a:hover { color: var(--earth); }
-h1, h2, h3 { font-family: var(--serif-display); font-weight: 400; line-height: 1.15; color: var(--text); }
+h1, h2, h3 { font-family: var(--serif-display); font-weight: 400; line-height: 1.2; color: var(--text); }
 
 /* ---------- Yerleşim yardımcıları ---------- */
 .wrap   { width: 100%; max-width: var(--wide);  margin-inline: auto; padding-inline: clamp(1.25rem, 5vw, 2.5rem); }
@@ -88,17 +88,17 @@ section { padding-block: var(--gap); }
 .nav-lang a:hover { background: var(--earth); color: var(--bg); border-color: var(--earth); }
 
 /* ---------- Hero ---------- */
-.hero { padding-block: clamp(4rem, 12vw, 9rem); }
+.hero { padding-block: clamp(3rem, 8vw, 6rem); }
 .eyebrow {
   font-family: var(--sans); font-size: .78rem; letter-spacing: .18em;
   text-transform: uppercase; color: var(--earth); margin: 0 0 1.5rem;
 }
 .hero h1 {
-  font-size: clamp(2.1rem, 6vw, 3.7rem);
-  margin: 0 0 1.5rem; letter-spacing: -0.01em;
+  font-size: clamp(1.6rem, 3.3vw, 2.25rem);
+  margin: 0 0 1.15rem; letter-spacing: -0.01em;
 }
 .hero h1 em { font-style: italic; color: var(--earth); }
-.lead { font-size: clamp(1.2rem, 2.4vw, 1.4rem); color: var(--text-soft); max-width: 32rem; margin: 0 0 2rem; }
+.lead { font-size: clamp(1.06rem, 1.8vw, 1.2rem); color: var(--text-soft); max-width: 32rem; margin: 0 0 2rem; }
 
 /* ---------- Hero görseli (tam genişlik bant) ---------- */
 .hero-banner { margin: 2rem auto 0; max-width: 46rem; padding-inline: clamp(1.25rem, 5vw, 2.5rem); line-height: 0; }
@@ -111,8 +111,8 @@ figure.cartoon figcaption { font-family: var(--sans); font-size: .8rem; color: v
 .prose figure.cartoon { max-width: 46rem; }
 
 /* ---------- Tipografik ritim ---------- */
-h2 { font-size: clamp(1.55rem, 3.6vw, 2.2rem); margin: 0 0 1.25rem; }
-h3 { font-size: 1.4rem; margin: 0 0 .6rem; }
+h2 { font-size: clamp(1.22rem, 2.4vw, 1.6rem); margin: 0 0 1rem; }
+h3 { font-size: 1.22rem; margin: 0 0 .55rem; }
 p  { margin: 0 0 1.4rem; }
 .muted { color: var(--text-soft); }
 .section-label {
@@ -132,7 +132,7 @@ p  { margin: 0 0 1.4rem; }
 .pillar p { font-size: 1rem; color: var(--text-soft); margin: 0; }
 
 /* ---------- Anti-tanım ---------- */
-.anti p { font-size: clamp(1.3rem, 3vw, 1.7rem); font-style: italic; color: var(--text); line-height: 1.5; }
+.anti p { font-size: clamp(1.1rem, 2.2vw, 1.35rem); font-style: italic; color: var(--text); line-height: 1.5; }
 .anti strong { font-style: normal; color: var(--earth); font-weight: 400; }
 
 /* ---------- İlk yazı kartı ---------- */
@@ -143,7 +143,7 @@ p  { margin: 0 0 1.4rem; }
 }
 .feature:hover { border-color: var(--gold); transform: translateY(-2px); }
 .feature .kicker { font-family: var(--sans); font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: var(--earth); }
-.feature h3 { font-size: clamp(1.5rem, 3.5vw, 2rem); margin: .75rem 0 .75rem; color: var(--text); }
+.feature h3 { font-size: clamp(1.15rem, 2.2vw, 1.4rem); margin: .65rem 0 .65rem; color: var(--text); }
 .feature p { color: var(--text-soft); margin: 0; }
 .feature .more { font-family: var(--sans); font-size: .85rem; color: var(--accent-deep); margin-top: 1.25rem; display: inline-block; }
 
@@ -235,7 +235,7 @@ figure.caricature.placeholder .frame {
 /* ---------- Dil kapısı (kök index) ---------- */
 .gate { min-height: 100vh; display: grid; place-items: center; text-align: center; padding: 2rem; }
 .gate .eyebrow { margin-bottom: 1.25rem; }
-.gate h1 { font-size: clamp(2.4rem, 7vw, 4rem); margin: 0 0 .5rem; }
+.gate h1 { font-size: clamp(1.8rem, 4.2vw, 2.5rem); margin: 0 0 .5rem; }
 .gate .sub { color: var(--text-soft); font-style: italic; margin: 0 0 2.5rem; }
 .gate .choices { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 .gate .choices a {
@@ -254,4 +254,120 @@ figure.caricature.placeholder .frame {
 @media (max-width: 640px) {
   .nav-links { display: none; }  /* mobilde sade; ileride menü düğmesi eklenir */
   body { font-size: 1.06rem; }
+}
+
+/* ---------- Radar: dış yazılar + kulüp notu ---------- */
+/* Index kartları .feature sınıfını devralır (yazılar sayfasıyla aynı görünüm). */
+.radar-card { margin-bottom: 1.5rem; }
+.radar-card .kicker { text-transform: none; letter-spacing: .06em; font-size: .78rem; }
+.radar-card h3 { font-size: clamp(1.08rem, 1.95vw, 1.28rem); }
+
+/* Kayıt sayfası */
+.radar-detail h1 { font-size: clamp(1.45rem, 2.7vw, 1.85rem); }
+
+.radar-label {
+  font-family: var(--sans); font-size: .72rem; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--earth);
+  margin: 0 0 .5rem;
+}
+
+/* Kaynak kutusu — çerçeveli, zemin yok: "onların sözü" */
+.radar-source {
+  border: 1px solid var(--line); border-radius: 10px;
+  padding: 1.25rem clamp(1.1rem, 3vw, 1.6rem);
+}
+.radar-source .src-title {
+  font-family: var(--serif-display); font-size: clamp(1rem, 1.7vw, 1.12rem);
+  line-height: 1.35; margin: 0 0 .55rem;
+}
+.radar-source .src-title a { color: var(--text); border-bottom: 1px solid var(--gold); }
+.radar-source .src-title a:hover { color: var(--earth); border-bottom-color: var(--earth); }
+.radar-source .src-by {
+  font-family: var(--sans); font-size: .85rem; color: var(--text-soft); margin: 0 0 1rem;
+}
+.radar-source .src-go { margin: 0; font-family: var(--sans); font-size: .85rem; }
+
+/* Özet — bizim sesimiz değil, aktarım */
+.radar-summary p:not(.radar-label) { color: var(--text-soft); margin: 0 0 1rem; }
+.radar-summary p:last-child { margin-bottom: 0; }
+
+/* Kulüp notu — dolu zemin + altın çubuk: "bizim sözümüz" */
+.radar-note {
+  padding: 1.3rem clamp(1.1rem, 3vw, 1.6rem);
+  background: var(--bg-alt);
+  border-left: 2px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+}
+.radar-note .radar-label { color: var(--accent-deep); }
+.radar-note p:not(.radar-label) { margin: 0 0 .9rem; }
+.radar-note p:last-child { margin-bottom: 0; }
+
+
+/* Radar aktariminda tablo ve kaynak notu */
+.radar-table-wrap { overflow-x: auto; margin: 1.4rem 0; }
+.radar-table { width: 100%; border-collapse: collapse; font-size: .96rem; }
+.radar-table th, .radar-table td {
+  text-align: left; padding: .6rem .7rem;
+  border-bottom: 1px solid var(--line-soft); vertical-align: top;
+}
+.radar-table thead th {
+  font-family: var(--sans); font-size: .72rem; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--earth); font-weight: 400;
+  border-bottom-color: var(--line);
+}
+.radar-table td:last-child, .radar-table th:last-child { text-align: right; }
+.radar-table td:not(:first-child), .radar-table th:not(:first-child) { white-space: nowrap; }
+.radar-table td:first-child { width: 46%; }
+.radar-table .muted { font-size: .88em; }
+
+.radar-src-note {
+  font-size: .88rem; font-style: italic; color: var(--text-soft);
+  margin: 2rem 0 0; padding-top: 1rem; border-top: 1px solid var(--line-soft);
+}
+.radar-summary strong { font-weight: 600; color: var(--text); }
+
+/* ---------- Sayfalayici: onceki / sonraki (yazilar + radar) ---------- */
+.pager {
+  padding-top: 2rem; border-top: 1px solid var(--line);
+  display: grid; grid-template-columns: 1fr auto 1fr; gap: 1.25rem 1.5rem;
+  align-items: start;
+}
+.pager > * { min-width: 0; }
+.pager-prev { grid-column: 1; text-align: left; }
+.pager-home { grid-column: 2; align-self: center; }
+.pager-next { grid-column: 3; text-align: right; }
+.pager-empty { display: block; }
+
+.pager-home {
+  font-family: var(--sans); font-size: .76rem; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--text-soft); white-space: nowrap;
+}
+.pager-home:hover { color: var(--earth); }
+
+.pager-dir {
+  display: block; font-family: var(--sans); font-size: .72rem;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--earth);
+  margin-bottom: .35rem;
+}
+.pager-title {
+  display: block; font-family: var(--serif-display); font-size: .98rem;
+  line-height: 1.3; color: var(--text);
+}
+.pager a:hover .pager-title { color: var(--earth); }
+
+@media (max-width: 640px) {
+  .pager { grid-template-columns: 1fr; gap: 1.4rem; }
+  .pager-prev, .pager-home, .pager-next { grid-column: 1; text-align: left; }
+  .pager-home { justify-self: start; order: 3; }
+  .pager-empty { display: none; }
+}
+
+/* Nav 6 maddeye cikinca ara genisliklerde sikisiyordu; nefes payini daraltiyoruz. */
+@media (max-width: 940px) {
+  .site-header nav { gap: 1rem; }
+  .nav-right { gap: 1rem; }
+  .nav-links { gap: .95rem; }
+  .nav-links a { font-size: .78rem; letter-spacing: .02em; }
+  .nav-links li { white-space: nowrap; }
+  .nav-logo { font-size: .95rem; }
 }

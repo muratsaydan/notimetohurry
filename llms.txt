@@ -20,6 +20,7 @@ gentrification and over-tourism contradictions), and the author's own honest, un
 - [First Stop: The Stoics](https://notimetohurry.com/en/articles/first-stop-the-stoics.html): Second piece — a recorded research dialogue with an AI on Stoicism and slow living: the dichotomy of control, Seneca on time, plus the objections (Marx/Hegel, Aristotle, Nietzsche, Camus).
 - [It All Started with a Plate of Pasta](https://notimetohurry.com/en/articles/it-all-started-with-a-plate-of-pasta.html): Third piece — the birth of the movement: Carlo Petrini, a 1986 Rome McDonald's, the 1989 Slow Food manifesto, Cittaslow, McDonaldization, and why the emblem is a snail.
 - [The Man Whose Name Was Stolen](https://notimetohurry.com/en/articles/the-man-whose-name-was-stolen.html): Fourth piece — a recorded dialogue on Epicurus: pleasure as the absence of pain, natural vs. bottomless desires, "live unnoticed" (lathe biosas), the Garden, the quarrel with the Stoics, the Diogenes-Crates-Zeno line, how Dante and Christian polemic turned a barley-bread philosopher into a gourmet, and the AI-read Herculaneum scroll of June 2026.
+- [Radar](https://notimetohurry.com/en/radar/index.html): Curated slow-living writing from other publications — not the club’s own work. Each entry gives a short summary of the outside piece, a link to the original, and a separate note of commentary from the club, which often disagrees with the source.
 - [About](https://notimetohurry.com/en/about.html): Murat Saydan — 27 years in IT (banking, ~20 years of logistics-sector ERP, then e-commerce and Rivea Beauty), now learning to slow down.
 
 ## Ana sayfalar (Türkçe)
@@ -29,6 +30,7 @@ gentrification and over-tourism contradictions), and the author's own honest, un
 - [İlk Durak: Stoacılar](https://notimetohurry.com/tr/makaleler/stoacilar.html)
 - [Her Şey Bir Tabak Makarnayla Başladı](https://notimetohurry.com/tr/makaleler/sakin-yasamin-dogusu.html)
 - [Adı Çalınan Adam](https://notimetohurry.com/tr/makaleler/epikuros.html)
+- [Radar](https://notimetohurry.com/tr/radar/index.html)
 - [Hakkımda](https://notimetohurry.com/tr/hakkinda.html)
 
 ## Author

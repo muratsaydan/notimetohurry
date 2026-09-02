@@ -20,3 +20,6 @@ deploy/build-slow-living-radar-workflow.mjs
 deploy/n8n-sample-wf.json
 deploy/n8n-workflow-slow-living-radar-min.json
 deploy/openapi.json
+
+# Instagram kart üreteci geçici dosyaları (Chrome profilleri ~300 MB)
+instagram/.build/
