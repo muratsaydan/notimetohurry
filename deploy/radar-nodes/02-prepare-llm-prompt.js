@@ -2,43 +2,84 @@
 // Dogrudan feed'ler content:encoded ile tam metni tasir -> ayrintili aktarim.
 // Google News ogelerinde govde yoktur -> yalnizca baslik cevirisi.
 
-function stripHtml(h) {
-  if (!h || typeof h !== 'string') return '';
-  let s = h
+function decodeEntities(s) {
+  return String(s)
+    .replace(/&amp;/g, '&') // once: &amp;nbsp; gibi cift kacislar tek tura insin
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&quot;/g, '"')
+    .replace(/&#8217;|&rsquo;|&#39;|&#8216;|&lsquo;/g, "'")
+    .replace(/&#8220;|&ldquo;|&#8221;|&rdquo;/g, '"')
+    .replace(/&#8212;|&mdash;|&#8211;|&ndash;/g, '-')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&#\d+;/g, ' ')
+    .replace(/&[a-z]+;/gi, ' ');
+}
+
+function stripTags(s) {
+  return String(s)
     .replace(/<script[\s\S]*?<\/script>/gi, ' ')
     .replace(/<style[\s\S]*?<\/style>/gi, ' ')
     .replace(/<br\s*\/?>/gi, '\n')
     .replace(/<\/(p|div|h[1-6]|li|tr|blockquote)>/gi, '\n')
     .replace(/<[^>]+>/g, ' ');
-  s = s
-    .replace(/&nbsp;/g, ' ')
-    .replace(/&amp;/g, '&')
-    .replace(/&quot;/g, '"')
-    .replace(/&#8217;|&rsquo;|&#39;|&#8216;|&lsquo;/g, "'")
-    .replace(/&#8220;|&ldquo;|&#8221;|&rdquo;/g, '"')
-    .replace(/&#8212;|&mdash;/g, '-')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&#\d+;/g, ' ')
-    .replace(/&[a-z]+;/gi, ' ');
-  return s.replace(/[ \t ]+/g, ' ').replace(/\n{2,}/g, '\n').trim();
 }
 
-function bodyOf(j) {
-  const cands = [
-    j['content:encodedSnippet'],
-    j['content:encoded'],
-    j.contentSnippet,
-    j.content,
-    j.summary,
-    j.description,
-  ];
-  let best = '';
-  for (const c of cands) {
-    const t = stripHtml(typeof c === 'string' ? c : '');
-    if (t.length > best.length) best = t;
+// ONEMLI (3 Eyl 2026): once entity cozulur, SONRA etiket silinir.
+// Google News'in description'i kacisli HTML tasir (&lt;a href=...&gt;). Eski sira
+// (once etiket, sonra entity) hicbir etiket bulamiyor, ardindan kacisli etiketleri
+// gorunur metne ceviriyordu; sonuc: govde diye <a href="...CBMi..."> yigini.
+// Cift kacisa karsi iki tur donuyoruz.
+function stripHtml(h) {
+  if (!h || typeof h !== 'string') return '';
+  let s = h;
+  for (let i = 0; i < 2; i++) {
+    s = decodeEntities(s);
+    s = stripTags(s);
   }
-  return best;
+  return s.replace(/[ \t]+/g, ' ').replace(/\n{2,}/g, '\n').trim();
+}
+
+// Google News'in description'i, icinde neredeyse hic duz metin olmayan bir
+// <a href=...> baglanti blogudur. Uzun oldugu icin "en uzun kazanir" mantiginda
+// gercek metnin onune geciyordu; boyle olanlari eleriz.
+function looksLikeLinkBlob(raw, text) {
+  if (!raw) return false;
+  // Kacisli HTML'i de sayabilmek icin once cozeriz.
+  const d = decodeEntities(String(raw));
+  const anchors = (d.match(/<a\s/gi) || []).length;
+  return anchors > 0 && text.length < 400 && text.length * 4 < d.length;
+}
+
+// Tercih sirasi onemli: once gercek tam metin alanlari, sonra tanitim/snippet.
+// Substack ve WordPress'te tam metin content:encoded icindedir; content ve
+// description kisa tanitimdir. Medium yalnizca description verir (~500 karakter).
+const GOVDE_ALANLARI = [
+  'content:encoded',
+  'content',
+  'summary',
+  'description',
+  'content:encodedSnippet',
+  'contentSnippet',
+];
+const TAM_METIN_ESIGI = 600;
+
+function bodyOf(j) {
+  let best = '';
+  let bestKey = '';
+  for (const k of GOVDE_ALANLARI) {
+    const raw = typeof j[k] === 'string' ? j[k] : '';
+    if (!raw) continue;
+    const t = stripHtml(raw);
+    if (looksLikeLinkBlob(raw, t)) continue;
+    // Tercih sirasindaki ilk doyurucu aday kazanir; yoksa en uzunu.
+    if (t.length >= TAM_METIN_ESIGI) return { text: t, key: k };
+    if (t.length > best.length) {
+      best = t;
+      bestKey = k;
+    }
+  }
+  return { text: best, key: bestKey };
 }
 
 function publisherOf(link) {
@@ -83,7 +124,9 @@ for (const it of items) {
     publisher = tm[2].trim();
   }
 
-  let body = bodyOf(j);
+  const secim = bodyOf(j);
+  let body = secim.text;
+  const govdeAlani = secim.key; // metin hangi alandan geldi (teshis icin)
   // Google News'te govde çogu zaman basligin tekrari; ise yaramaz say
   if (isGN && body.length < title.length + 160) body = '';
   if (body.length > 9000) body = body.slice(0, 9000);
@@ -135,6 +178,7 @@ for (const it of items) {
       creator: j.creator || j['dc:creator'] || '',
       tamMetin,
       govdeUzunluk: body.length,
+      govdeAlani,
       hasArticles: true,
       userPrompt,
     },

@@ -5,6 +5,7 @@ Code node'larının birebir kaynağıdır. Canlıdaki kod bunlarla aynı olmalı
 
 | dosya | n8n node adı |
 |---|---|
+| `00-feed-urls.js` | Feed URLs |
 | `01-dedupe-by-link.js` | Dedupe by link |
 | `02-prepare-llm-prompt.js` | Prepare LLM prompt |
 | `03-apply-turkish-summaries.js` | Apply Turkish summaries |
@@ -40,6 +41,46 @@ ve Business Insider (yalnızca borsa tickerı) kullanılabilir akış vermiyor.
    40.000 karakter.
 3. **Başlıklar İngilizceydi.** Artık her öğe için Türkçe başlık üretiliyor; orijinal başlık
    altında italik olarak duruyor.
+
+## Kaynak katmanları (3 Eyl 2026)
+
+Bir kaynağın ne kadar ayrıntı üretebileceğini akışının ne taşıdığı belirler.
+
+| katman | ne gelir | kaynaklar |
+|---|---|---|
+| **Tam metin** (`content:encoded`) | ayrıntılı Türkçe aktarım | Raptitude, Tiny Buddha, Slow Living Collective, On Better Living |
+| **Tanıtım** (~500-700 karakter) | kısa özet, link gerçek adres | Medium `/tag/slow-living`, No Sidebar |
+| **Gövdesiz** | yalnızca Türkçe başlık | Google News (genel + Real Simple + Business Insider `site:` sorguları) |
+
+Ölçüm (3 Eyl 2026): Raptitude 8.929 kr, Tiny Buddha 14.051 kr, Slow Living Collective 20.013 kr
+`content:encoded`. Medium 668 kr yalnızca `description`. Slow Living Collective o tarihte 32
+gündür sessizdi — 7 günlük pencereye girmiyordu; radarın zayıf görünmesinin sebebi buydu.
+
+**Denenip elenenler:** Zen Habits (404), Slow Food (item yok), The Art of Simple (1869 gün),
+Becoming Minimalist (420 gün), Slow Living LDN (251 gün, gövdesiz), Cal Newport / Break the
+Twitch / The Minimalists / The Simplicity Habit (bağlantı kurulamadı).
+
+**LinkedIn, Facebook, Instagram eklenemiyor:** üçünün de herkese açık RSS'i yok ve API'leri
+üçüncü taraf içerik keşfine kapalı. Yalnızca ücretli köprülerle (rss.app, RSSHub) mümkün;
+kırılgan ve platform şartlarıyla sorunlu.
+
+## 3 Eylül 2026'da düzeltilen iki hata
+
+4. **`Dedupe by link` gövdeyi eziyordu.** Altı ayrı gövde alanı arasından "en uzun olanı"
+   seçip sonucu yine `content:encoded` adıyla geri yazıyordu. Google News öğelerinde en uzun
+   aday yazının metni değil `<a href=...CBMi...>` bağlantı bloğudur; gerçek içerik onun altında
+   kalıyordu. Ayrıca altı alan tek alana çökertildiği için `02`'deki `bodyOf()` gerçek adayları
+   hiç göremiyordu. **Çözüm:** `01` artık gövdeye hiç karışmıyor, bütün alanları olduğu gibi
+   geçiriyor; seçimi `02` yapıyor.
+5. **`stripHtml` sırası tersti.** Önce etiket siliyor, sonra entity çözüyordu. Google News'in
+   `description`'ı kaçışlı HTML taşır (`&lt;a href=...&gt;`); etiket silme adımı hiçbir şey
+   bulamıyor, sonraki decode adımı kaçışlı etiketleri görünür metne çeviriyordu. **Çözüm:**
+   önce `decodeEntities`, sonra `stripTags`, çift kaçışa karşı iki tur. Ayrıca `&amp;` zincirin
+   başına alındı (yoksa `&amp;nbsp;` → `nbsp;` diye metinde kalıyordu).
+
+`02`'deki seçim artık tercih sırasına göre: `content:encoded` → `content` → `summary` →
+`description` → snippet'ler. 600 karakteri geçen ilk aday kazanır; bağlantı bloğu görünümündeki
+adaylar (`looksLikeLinkBlob`) elenir. Seçilen alan `govdeAlani` olarak çıktıya yazılır.
 
 ## LLM çıktı sözleşmesi
 
