@@ -211,6 +211,10 @@ otomatize edemezsin; ettiğin an, tek sermaye olan otantikliği öldürürsün. 
 - **Site:** Saf HTML/CSS/JS — framework yok, dependency yok, hızlı yüklenir.
 - **Yapı:** `tr/` ve `en/` ayrı; ortak `css/`, `assets/`.
 - **Yayın:** Depoya push → GitHub Actions → `notimetohurry.com` canlı.
+- **LinkedIn kopyası:** Her yazı yayınlandıktan sonra `python araclar/linkedin_kopyasi.py`
+  çalıştırılır; `kaynaklar/linkedin/<slug>-linkedin.html` çıkar (git dışı). Tarayıcıda aç,
+  Ctrl+A / Ctrl+C, LinkedIn makale gövdesine yapıştır. Konuşma balonları röportaj biçimine
+  iner (Murat kalın, yapay zekâ düz), başa kulüp paragrafı + site linki eklenir.
 - **Radar:** n8n tabanlı slow-living ekosistem tarayıcısı (RSS + Google Haberler),
   içerik fikri beslemesi için. Ayrıntı: `n8n-slow-living-radar.md`.
 - **Sırlar:** API anahtarları repoya girmez; global `secrets.env` konvansiyonu.
