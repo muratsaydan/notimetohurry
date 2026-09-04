@@ -10,21 +10,24 @@ Instagram'dan farkı tam olarak bu ikisi: bağlantı tıklanır, uzun yazı okun
 
 ---
 
-## 1. Önce sayfayı düzelt (5 Eylül 2026'daki hâline göre)
+## 1. Sayfa ayarları (5 Eylül 2026'da yapıldı)
 
-| Alan | Şu an | Olacak |
-| --- | --- | --- |
-| **Sayfa adı** | `Hiçbiryereyetişmeyenlerkulübü` ❗ | `Hiçbir Yere Yetişmeyenler Kulübü` — boşluklu; Facebook araması kelimeleri ayrı ayrı tarar, bitişik ad hiçbir aramada çıkmaz |
-| **Kullanıcı adı** | yok (profile.php?id=…) | `hicbiryereyetismeyenlerkulubu` — Instagram ile aynı; adres `facebook.com/hicbiryereyetismeyenlerkulubu` olur |
-| **Kategori** | Tarih ve Felsefe | `Kişisel Blog` (birincil) + `Felsefe` (ikincil). Facebook üç kategoriye izin veriyor |
-| **Telefon** | `0531 835 65 67` herkese açık ❗ | **Kaldır.** Bir blog sayfasında kişisel cep numarası, arayan herkese açık demek |
-| **Çalışma saatleri** | "Sürekli Açık" | Kaldır; dükkân değil |
-| **E-posta** | murat@saydan.net | Kalsın |
-| **Web sitesi** | notimetohurry.com | Kalsın |
-| **Kapak fotoğrafı** | yok | `cikti/kapak-fotografi.jpg` (1640×624, koala) |
-| **Profil fotoğrafı** | koala (kırpık) | Kalsın; site de aynı yüzle açılıyor |
-| **Eylem düğmesi** | yok | "Daha fazla bilgi" → `https://notimetohurry.com/tr/index.html` |
-| **Açıklama** | mevcut metin iyi | Sonuna bir satır: `Kulübün şu anki tek üyesi benim. Yer var.` |
+Sayfa adresi: **https://www.facebook.com/hicbiryereyetismeyenlerkulubu**
+
+| Alan | Durum |
+| --- | --- |
+| Sayfa adı | `Hiçbir Yere Yetişmeyenler Kulübü` (boşluklu; bitişik ad aramada çıkmıyordu) |
+| Kullanıcı adı | `hicbiryereyetismeyenlerkulubu` — Instagram ile aynı |
+| Kategori | `Kişisel Blog` (birincil) + `Tarih ve Felsefe` (Facebook'ta tek başına "Felsefe" yok) |
+| Telefon | kaldırıldı (kişisel cep numarası herkese açıktı) |
+| Çalışma saatleri | kaldırıldı ("Sürekli Açık" duruyordu) |
+| E-posta / web sitesi | murat@saydan.net · notimetohurry.com |
+| Kapak fotoğrafı | `cikti/kapak-fotografi.jpg` yüklendi |
+| Profil fotoğrafı | koala (site ile aynı yüz) |
+| Eylem düğmesi | "Daha fazla bilgi al" → `https://notimetohurry.com/tr/index.html` |
+| Açıklama | sonuna `Kulübün şu anki tek üyesi benim. Yer var.` eklendi |
+
+Ad değişikliği şifre istedi; onu Murat girdi. Diğer her şey Murat'ın açık Chrome oturumu üzerinden yapıldı.
 
 ---
 
