@@ -215,6 +215,9 @@ otomatize edemezsin; ettiğin an, tek sermaye olan otantikliği öldürürsün. 
   çalıştırılır; `kaynaklar/linkedin/<slug>-linkedin.html` çıkar (git dışı). Tarayıcıda aç,
   Ctrl+A / Ctrl+C, LinkedIn makale gövdesine yapıştır. Konuşma balonları röportaj biçimine
   iner (Murat kalın, yapay zekâ düz), başa kulüp paragrafı + site linki eklenir.
+- **Facebook gönderisi:** Aynı anda `python araclar/facebook_gonderi.py` de çalışır;
+  `kaynaklar/facebook/<slug>-facebook.md` çıkar (karikatür + giriş + kapanış + bağlantı).
+  Sayfa sistemi, ritim (Pzt yazı / Çar karikatür / Cum radar) ve hazır metinler `facebook/`.
 - **Radar:** n8n tabanlı slow-living ekosistem tarayıcısı (RSS + Google Haberler),
   içerik fikri beslemesi için. Ayrıntı: `n8n-slow-living-radar.md`.
 - **Sırlar:** API anahtarları repoya girmez; global `secrets.env` konvansiyonu.
